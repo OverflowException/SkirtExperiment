@@ -1,0 +1,40 @@
+115 = 	name = Skirt1_1
+	id = 115
+	parent = 22
+	children = [116, ]
+	t_local = [0.1111, 0.0479054, 0.000216186]
+	r_local = [axis = [2.81772e-08, -6.59348e-08, -1], angle = 1.35263, degree = 0.0236079]
+	trans_local = [translation = [0.1111, 0.0479054, 0.000216186], rotation = [axis = [2.81772e-08, -6.59349e-08, -1], angle = 1.35263, degree = 0.0236078]]
+	t_model = [0.107048, 0.974136, 0.00979401]
+	r_model = [axis = [0.0296394, 0.0344923, -0.998965], angle = 1.36279, degree = 0.0237852]
+	trans_model = [translation = [0.107048, 0.974136, 0.00979401], rotation = [axis = [0.0296394, 0.0344923, -0.998965], angle = 1.36279, degree = 0.0237852]]
+116 = 	name = Skirt1_2
+	id = 116
+	parent = 115
+	children = [117, ]
+	t_local = [0.0814036, -2.24029e-08, 1.13961e-09]
+	r_local = [axis = [1, 0, 0], angle = 0, degree = 0]
+	trans_local = [translation = [0.0814036, -2.24029e-08, 1.13961e-09], rotation = [axis = [1, 0, 0], angle = 0, degree = 0]]
+	t_model = [0.123916, 0.894636, 0.00513422]
+	r_model = [axis = [0.0296394, 0.0344923, -0.998965], angle = 1.36279, degree = 0.0237852]
+	trans_model = [translation = [0.123916, 0.894636, 0.00513422], rotation = [axis = [0.0296394, 0.0344923, -0.998965], angle = 1.36279, degree = 0.0237852]]
+117 = 	name = Skirt1_3
+	id = 117
+	parent = 116
+	children = [118, ]
+	t_local = [0.0816073, 4.26326e-16, -2.66454e-17]
+	r_local = [axis = [1, 0, 0], angle = 0, degree = 0]
+	trans_local = [translation = [0.0816073, 4.26326e-16, -2.66454e-17], rotation = [axis = [1, 0, 0], angle = 0, degree = 0]]
+	t_model = [0.140825, 0.814936, 0.00046276]
+	r_model = [axis = [0.0296394, 0.0344923, -0.998965], angle = 1.36279, degree = 0.0237852]
+	trans_model = [translation = [0.140825, 0.814936, 0.00046276], rotation = [axis = [0.0296394, 0.0344923, -0.998965], angle = 1.36279, degree = 0.0237852]]
+118 = 	name = Skirt1End
+	id = 118
+	parent = 117
+	children = []
+	t_local = [0.0819737, 6.54406e-08, -1.13961e-09]
+	r_local = [axis = [1, 0, 0], angle = 0, degree = 0]
+	trans_local = [translation = [0.0819737, 6.54406e-08, -1.13961e-09], rotation = [axis = [1, 0, 0], angle = 0, degree = 0]]
+	t_model = [0.157811, 0.734879, -0.00422967]
+	r_model = [axis = [0.0296394, 0.0344923, -0.998965], angle = 1.36279, degree = 0.0237852]
+	trans_model = [translation = [0.157811, 0.734879, -0.00422967], rotation = [axis = [0.0296394, 0.0344923, -0.998965], angle = 1.36279, degree = 0.0237852]]

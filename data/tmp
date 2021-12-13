@@ -1,0 +1,1186 @@
+2021-12-11 11:16:23.290214+0800 HairExperiment[15394:1033465] Metal API Validation Enabled
+2021-12-11 11:16:23.312486+0800 HairExperiment[15394:1033465] +[MTLIOAccelDevice registerDevices]: Zero Metal services found
+Version = 4.1 Metal - 71.6.4
+Vendor = Apple
+Renderer = Apple M1
+0 = 	name = RootNode
+	id = 0
+	parent = -1
+	children = [1, 17, 22, 135, ]
+	t_local = [0, 0, 0]
+	r_local = [axis = [1, 0, 0], angle = 0, degree = 0]
+	trans_local = [translation = [0, 0, 0], rotation = [axis = [1, 0, 0], angle = 0, degree = 0]]
+	t_model = [0, 0, 0]
+	r_model = [axis = [1, 0, 0], angle = 0, degree = 0]
+	trans_model = [translation = [0, 0, 0], rotation = [axis = [1, 0, 0], angle = 0, degree = 0]]
+1 = 	name = body
+	id = 1
+	parent = 0
+	children = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, ]
+	t_local = [0, 0, 0]
+	r_local = [axis = [1, 0, 0], angle = 0, degree = 0]
+	trans_local = [translation = [0, 0, 0], rotation = [axis = [1, 0, 0], angle = 0, degree = 0]]
+	t_model = [0, 0, 0]
+	r_model = [axis = [1, 0, 0], angle = 0, degree = 0]
+	trans_model = [translation = [0, 0, 0], rotation = [axis = [1, 0, 0], angle = 0, degree = 0]]
+17 = 	name = jichuzhuang
+	id = 17
+	parent = 0
+	children = [18, 19, 20, 21, ]
+	t_local = [0, 0, 0]
+	r_local = [axis = [1, 0, 0], angle = 0, degree = 0]
+	trans_local = [translation = [0, 0, 0], rotation = [axis = [1, 0, 0], angle = 0, degree = 0]]
+	t_model = [0, 0, 0]
+	r_model = [axis = [1, 0, 0], angle = 0, degree = 0]
+	trans_model = [translation = [0, 0, 0], rotation = [axis = [1, 0, 0], angle = 0, degree = 0]]
+22 = 	name = Hips
+	id = 22
+	parent = 0
+	children = [23, 101, 106, 111, 115, 119, 123, 127, 131, ]
+	t_local = [-0.00449486, 0.927303, 0.00808022]
+	r_local = [axis = [0.970733, 0.181273, -0.157619], angle = 0.0580233, degree = 0.0010127]
+	trans_local = [translation = [-0.00449486, 0.927303, 0.00808022], rotation = [axis = [0.970665, 0.18126, -0.157608], angle = 0.0580274, degree = 0.00101277]]
+	t_model = [-0.00449486, 0.927303, 0.00808022]
+	r_model = [axis = [0.970665, 0.18126, -0.157608], angle = 0.0580274, degree = 0.00101277]
+	trans_model = [translation = [-0.00449486, 0.927303, 0.00808022], rotation = [axis = [0.970665, 0.18126, -0.157608], angle = 0.0580274, degree = 0.00101277]]
+23 = 	name = Spine
+	id = 23
+	parent = 22
+	children = [24, ]
+	t_local = [-7.75146e-10, 0.0718297, 0.00782765]
+	r_local = [axis = [0.999723, -0.00257375, -0.0233595], angle = 0.0666959, degree = 0.00116406]
+	trans_local = [translation = [-7.75146e-10, 0.0718297, 0.00782765], rotation = [axis = [0.999723, -0.00257375, -0.0233595], angle = 0.0666959, degree = 0.00116406]]
+	t_model = [-0.00373676, 0.998575, 0.0199351]
+	r_model = [axis = [0.992674, 0.0813933, -0.0892547], angle = 0.123901, degree = 0.00216248]
+	trans_model = [translation = [-0.00373676, 0.998575, 0.0199351], rotation = [axis = [0.992674, 0.0813933, -0.0892547], angle = 0.123901, degree = 0.00216248]]
+24 = 	name = Spine1
+	id = 24
+	parent = 23
+	children = [25, ]
+	t_local = [1.54979e-10, 0.11146, -0.00288386]
+	r_local = [axis = [-1.00004, 0.000290441, 0.000278236], angle = 0.0407071, degree = 0.000710473]
+	trans_local = [translation = [1.54979e-10, 0.11146, -0.00288386], rotation = [axis = [-1.00004, 0.000290441, 0.000278236], angle = 0.0407071, degree = 0.000710473]]
+	t_model = [-0.00246533, 1.10954, 0.0307407]
+	r_model = [axis = [0.983873, 0.123336, -0.129556], angle = 0.0836349, degree = 0.0014597]
+	trans_model = [translation = [-0.00246533, 1.10954, 0.0307407], rotation = [axis = [0.983873, 0.123336, -0.129556], angle = 0.0836349, degree = 0.0014597]]
+25 = 	name = Spine2
+	id = 25
+	parent = 24
+	children = [26, 53, 77, ]
+	t_local = [2.45036e-10, 0.134631, -0.0102995]
+	r_local = [axis = [-0.999997, 0.000227485, 0.00168461], angle = 0.138148, degree = 0.00241114]
+	trans_local = [translation = [2.45036e-10, 0.134631, -0.0102995], rotation = [axis = [-1.00001, 0.000227488, 0.00168463], angle = 0.138146, degree = 0.00241111]]
+	t_model = [-0.00105268, 1.24455, 0.0315344]
+	r_model = [axis = [-0.966529, 0.191349, -0.170651], angle = 0.0577927, degree = 0.00100867]
+	trans_model = [translation = [-0.00105268, 1.24455, 0.0315344], rotation = [axis = [-0.966529, 0.191349, -0.170651], angle = 0.0577927, degree = 0.00100867]]
+26 = 	name = Neck
+	id = 26
+	parent = 25
+	children = [27, ]
+	t_local = [-4.28511e-10, 0.0936849, -0.0195372]
+	r_local = [axis = [0.646999, -0.762398, 0.00922635], angle = 0.0585225, degree = 0.00102141]
+	trans_local = [translation = [-4.28511e-10, 0.0936849, -0.0195372], rotation = [axis = [0.647089, -0.762505, 0.00922764], angle = 0.0585144, degree = 0.00102127]]
+	t_model = [-0.000379481, 1.337, 0.00679353]
+	r_model = [axis = [-0.464304, -0.860007, -0.211244], angle = 0.0392033, degree = 0.000684226]
+	trans_model = [translation = [-0.000379481, 1.337, 0.00679353], rotation = [axis = [-0.464304, -0.860007, -0.211244], angle = 0.0392033, degree = 0.000684226]]
+27 = 	name = Head
+	id = 27
+	parent = 26
+	children = [28, 29, 31, 32, 33, 38, 43, 48, ]
+	t_local = [-3.31455e-09, 0.0749288, 0.0118506]
+	r_local = [axis = [0.999073, -0.0173965, 0.0393227], angle = 0.213046, degree = 0.00371836]
+	trans_local = [translation = [-3.31455e-09, 0.0749288, 0.0118506], rotation = [axis = [0.999084, -0.0173967, 0.0393231], angle = 0.213044, degree = 0.00371832]]
+	t_model = [-0.000134693, 1.41213, 0.0172824]
+	r_model = [axis = [0.981173, -0.192154, 0.0189058], angle = 0.198202, degree = 0.00345927]
+	trans_model = [translation = [-0.000134693, 1.41213, 0.0172824], rotation = [axis = [0.981173, -0.192154, 0.0189058], angle = 0.198202, degree = 0.00345927]]
+28 = 	name = HeadTop_End
+	id = 28
+	parent = 27
+	children = []
+	t_local = [-2.69923e-17, 0.193225, 0]
+	r_local = [axis = [1, 0, 0], angle = 0, degree = 0]
+	trans_local = [translation = [-2.69923e-17, 0.193225, 0], rotation = [axis = [1, 0, 0], angle = 0, degree = 0]]
+	t_model = [-0.00156722, 1.60171, 0.0545996]
+	r_model = [axis = [0.981173, -0.192154, 0.0189058], angle = 0.198202, degree = 0.00345927]
+	trans_model = [translation = [-0.00156722, 1.60171, 0.0545996], rotation = [axis = [0.981173, -0.192154, 0.0189058], angle = 0.198202, degree = 0.00345927]]
+29 = 	name = Jaw
+	id = 29
+	parent = 27
+	children = [30, ]
+	t_local = [2.28983e-18, 0.0149875, 0.0163966]
+	r_local = [axis = [1, 0, 0], angle = 2.61799, degree = 0.0456926]
+	trans_local = [translation = [2.28983e-18, 0.0149875, 0.0163966], rotation = [axis = [1, 0, 0], angle = 2.61799, degree = 0.0456926]]
+	t_model = [-0.000860239, 1.42367, 0.0362526]
+	r_model = [axis = [0.999813, -0.00315636, 0.0191058], angle = 2.81255, degree = 0.0490882]
+	trans_model = [translation = [-0.000860239, 1.42367, 0.0362526], rotation = [axis = [0.999813, -0.00315636, 0.0191058], angle = 2.81255, degree = 0.0490882]]
+30 = 	name = Jaw_End
+	id = 30
+	parent = 29
+	children = []
+	t_local = [-5.55111e-19, 0.0616673, -0.0494858]
+	r_local = [axis = [1, 0, 0], angle = 0, degree = 0]
+	trans_local = [translation = [-5.55111e-19, 0.0616673, -0.0494858], rotation = [axis = [1, 0, 0], angle = 0, degree = 0]]
+	t_model = [-0.00340912, 1.3813, 0.102965]
+	r_model = [axis = [0.999813, -0.00315636, 0.0191058], angle = 2.81255, degree = 0.0490882]
+	trans_model = [translation = [-0.00340912, 1.3813, 0.102965], rotation = [axis = [0.999813, -0.00315636, 0.0191058], angle = 2.81255, degree = 0.0490882]]
+31 = 	name = RightEye
+	id = 31
+	parent = 27
+	children = []
+	t_local = [-0.03572, 0.0621403, 0.0538999]
+	r_local = [axis = [0.839169, 0.544212, -0.00499897], angle = 0.0218912, degree = 0.000382074]
+	trans_local = [translation = [-0.03572, 0.0621403, 0.0538999], rotation = [axis = [0.839169, 0.544212, -0.00499897], angle = 0.0218912, degree = 0.000382074]]
+	t_model = [-0.0383091, 1.46268, 0.080764]
+	r_model = [axis = [0.992237, -0.122024, 0.0240008], angle = 0.214473, degree = 0.00374326]
+	trans_model = [translation = [-0.0383091, 1.46268, 0.080764], rotation = [axis = [0.992237, -0.122024, 0.0240008], angle = 0.214473, degree = 0.00374326]]
+32 = 	name = LeftEye
+	id = 32
+	parent = 27
+	children = []
+	t_local = [0.03572, 0.0621403, 0.0538999]
+	r_local = [axis = [0.560303, -0.828171, 0.00760733], angle = 0.0327844, degree = 0.000572195]
+	trans_local = [translation = [0.03572, 0.0621403, 0.0538999], rotation = [axis = [0.560179, -0.827987, 0.00760564], angle = 0.0327916, degree = 0.000572322]]
+	t_model = [0.0330788, 1.46268, 0.083493]
+	r_model = [axis = [0.956179, -0.292659, 0.00766131], angle = 0.222647, degree = 0.00388592]
+	trans_model = [translation = [0.0330788, 1.46268, 0.083493], rotation = [axis = [0.956179, -0.292659, 0.00766131], angle = 0.222647, degree = 0.00388592]]
+33 = 	name = hairB1
+	id = 33
+	parent = 27
+	children = [34, ]
+	t_local = [0.000494918, 0.120157, -0.095646]
+	r_local = [axis = [-0.000537421, -0.0254336, 0.999676], angle = 3.14344, degree = 0.0548634]
+	trans_local = [translation = [0.000494918, 0.120157, -0.095646], rotation = [axis = [-0.000537421, -0.0254336, 0.999676], angle = 3.14344, degree = 0.0548634]]
+	t_model = [0.0030532, 1.54851, -0.0532671]
+	r_model = [axis = [-0.0195823, -0.122337, 0.992295], angle = 3.14803, degree = 0.0549436]
+	trans_model = [translation = [0.0030532, 1.54851, -0.0532671], rotation = [axis = [-0.0195823, -0.122337, 0.992295], angle = 3.14803, degree = 0.0549436]]
+34 = 	name = hairB1_seg_1_joint
+	id = 34
+	parent = 33
+	children = [35, ]
+	t_local = [-3.10862e-17, 0.0445447, 0]
+	r_local = [axis = [1.00001, -1.89818e-16, -4.00818e-17], angle = 0.0737524, degree = 0.00128722]
+	trans_local = [translation = [-3.10862e-17, 0.0445447, 0], rotation = [axis = [1.00001, -1.89818e-16, -4.00818e-17], angle = 0.0737524, degree = 0.00128722]]
+	t_model = [0.00355136, 1.5053, -0.0640763]
+	r_model = [axis = [-0.0196877, -0.0856701, 0.996129], angle = 3.14659, degree = 0.0549183]
+	trans_model = [translation = [0.00355136, 1.5053, -0.0640763], rotation = [axis = [-0.0196877, -0.0856701, 0.996129], angle = 3.14659, degree = 0.0549183]]
+35 = 	name = hairB2
+	id = 35
+	parent = 34
+	children = [36, ]
+	t_local = [1.77636e-17, 0.0445447, 0]
+	r_local = [axis = [1, 0, 0], angle = 0.103088, degree = 0.00179923]
+	trans_local = [translation = [1.77636e-17, 0.0445447, 0], rotation = [axis = [1.00003, 0, 0], angle = 0.103086, degree = 0.00179919]]
+	t_model = [0.0039232, 1.46141, -0.0716747]
+	r_model = [axis = [-0.0197902, -0.0342343, 0.999218], angle = 3.14455, degree = 0.0548828]
+	trans_model = [translation = [0.0039232, 1.46141, -0.0716747], rotation = [axis = [-0.0197902, -0.0342343, 0.999218], angle = 3.14455, degree = 0.0548828]]
+36 = 	name = hairB2_seg_1_joint
+	id = 36
+	parent = 35
+	children = [37, ]
+	t_local = [-2.22045e-17, 0.0507627, 0]
+	r_local = [axis = [1.00001, -2.16843e-19, -5.87759e-18], angle = 0.0737524, degree = 0.00128722]
+	trans_local = [translation = [-2.22045e-17, 0.0507627, 0], rotation = [axis = [1.00001, -2.16843e-19, -5.87759e-18], angle = 0.0737524, degree = 0.00128722]]
+	t_model = [0.00414204, 1.41076, -0.0751446]
+	r_model = [axis = [-0.0198312, 0.00262818, 0.9998], angle = 3.14309, degree = 0.0548573]
+	trans_model = [translation = [0.00414204, 1.41076, -0.0751446], rotation = [axis = [-0.0198312, 0.00262818, 0.9998], angle = 3.14309, degree = 0.0548573]]
+37 = 	name = hairB3
+	id = 37
+	parent = 36
+	children = []
+	t_local = [1.66533e-18, 0.0507627, 1.77636e-17]
+	r_local = [axis = [9.51069e-18, 0.155321, 0.987864], angle = 3.14159, degree = 0.0548311]
+	trans_local = [translation = [1.66533e-18, 0.0507627, 1.77636e-17], rotation = [axis = [9.51069e-18, 0.155321, 0.987864], angle = 3.14159, degree = 0.0548311]]
+	t_model = [0.00421272, 1.36, -0.0748763]
+	r_model = [axis = [0.991659, -0.126474, 0.0248064], angle = 0.309186, degree = 0.00539632]
+	trans_model = [translation = [0.00421272, 1.36, -0.0748763], rotation = [axis = [0.991659, -0.126474, 0.0248064], angle = 0.309186, degree = 0.00539632]]
+38 = 	name = hairC1
+	id = 38
+	parent = 27
+	children = [39, ]
+	t_local = [-0.0723837, 0.118747, -0.0234013]
+	r_local = [axis = [-0.000927705, -0.0785408, 0.996911], angle = 3.15381, degree = 0.0550445]
+	trans_local = [translation = [-0.0723837, 0.118747, -0.0234013], rotation = [axis = [-0.000927705, -0.0785408, 0.99691], angle = 3.15381, degree = 0.0550445]]
+	t_model = [-0.072469, 1.53316, 0.0145074]
+	r_model = [axis = [-0.0203227, -0.174821, 0.98439], angle = 3.16029, degree = 0.0551575]
+	trans_model = [translation = [-0.072469, 1.53316, 0.0145074], rotation = [axis = [-0.0203227, -0.174821, 0.98439], angle = 3.16029, degree = 0.0551575]]
+39 = 	name = hairC1_seg_1_joint
+	id = 39
+	parent = 38
+	children = [40, ]
+	t_local = [-8.88178e-18, 0.0494752, 0]
+	r_local = [axis = [0.97769, 0.00353528, -0.21027], angle = 0.0509841, degree = 0.000889841]
+	trans_local = [translation = [-8.88178e-18, 0.0494752, 0], rotation = [axis = [0.97751, 0.00353463, -0.210231], angle = 0.0509935, degree = 0.000890004]]
+	t_model = [-0.0712069, 1.48672, -0.0025009]
+	r_model = [axis = [-0.0197001, -0.150337, 0.988439], angle = 3.14869, degree = 0.054955]
+	trans_model = [translation = [-0.0712069, 1.48672, -0.0025009], rotation = [axis = [-0.0197001, -0.150337, 0.988439], angle = 3.14869, degree = 0.054955]]
+40 = 	name = hairC2
+	id = 40
+	parent = 39
+	children = [41, ]
+	t_local = [-8.88178e-18, 0.0488397, 2.13163e-16]
+	r_local = [axis = [0.998278, -0.0134447, -0.0570424], angle = 0.124982, degree = 0.00218135]
+	trans_local = [translation = [-8.88178e-18, 0.0488397, 2.13163e-16], rotation = [axis = [0.998293, -0.013445, -0.0570432], angle = 0.12498, degree = 0.00218132]]
+	t_model = [-0.070575, 1.44009, -0.017009]
+	r_model = [axis = [-0.0185172, -0.0884886, 0.995905], angle = 3.13943, degree = 0.0547934]
+	trans_model = [translation = [-0.070575, 1.44009, -0.017009], rotation = [axis = [-0.0185172, -0.0884886, 0.995905], angle = 3.13943, degree = 0.0547934]]
+41 = 	name = hairC2_seg_1_joint
+	id = 41
+	parent = 40
+	children = [42, ]
+	t_local = [2.66454e-17, 0.0431355, 0]
+	r_local = [axis = [0.557294, -0.0449009, 0.829095], angle = 0.104825, degree = 0.00182955]
+	trans_local = [translation = [2.66454e-17, 0.0431355, 0], rotation = [axis = [0.557294, -0.0449008, 0.829095], angle = 0.104825, degree = 0.00182955]]
+	t_model = [-0.0705266, 1.39763, -0.0246134]
+	r_model = [axis = [-0.0199786, -0.0585403, 0.998085], angle = 3.22531, degree = 0.0562922]
+	trans_model = [translation = [-0.0705266, 1.39763, -0.0246134], rotation = [axis = [-0.0199786, -0.0585403, 0.998085], angle = 3.22531, degree = 0.0562922]]
+42 = 	name = hairC3
+	id = 42
+	parent = 41
+	children = []
+	t_local = [-1.77636e-17, 0.0430546, 7.10543e-17]
+	r_local = [axis = [-0.146206, 0.165743, 0.975271], angle = 3.09191, degree = 0.053964]
+	trans_local = [translation = [-1.77636e-17, 0.0430546, 7.10543e-17], rotation = [axis = [-0.146206, 0.165743, 0.975271], angle = 3.09191, degree = 0.053964]]
+	t_model = [-0.066833, 1.35502, -0.0295639]
+	r_model = [axis = [0.844234, 0.524846, 0.10866], angle = 0.519016, degree = 0.00905854]
+	trans_model = [translation = [-0.066833, 1.35502, -0.0295639], rotation = [axis = [0.844234, 0.524846, 0.10866], angle = 0.519016, degree = 0.00905854]]
+43 = 	name = hairA1
+	id = 43
+	parent = 27
+	children = [44, ]
+	t_local = [0.0740336, 0.117945, -0.037232]
+	r_local = [axis = [-0.00096636, -0.0795849, 0.996828], angle = 3.15457, degree = 0.0550577]
+	trans_local = [translation = [0.0740336, 0.117945, -0.037232], rotation = [axis = [-0.00096636, -0.0795849, 0.996828], angle = 3.15457, degree = 0.0550577]]
+	t_model = [0.0743657, 1.53505, 0.00638554]
+	r_model = [axis = [-0.0203945, -0.175846, 0.984206], angle = 3.16108, degree = 0.0551712]
+	trans_model = [translation = [0.0743657, 1.53505, 0.00638554], rotation = [axis = [-0.0203945, -0.175846, 0.984206], angle = 3.16108, degree = 0.0551712]]
+44 = 	name = hairA1_seg_1_joint
+	id = 44
+	parent = 43
+	children = [45, ]
+	t_local = [0, 0.0494752, 0]
+	r_local = [axis = [0.999616, -0.0257246, -0.0111503], angle = 0.0808717, degree = 0.00141148]
+	trans_local = [translation = [0, 0.0494752, 0], rotation = [axis = [0.999616, -0.0257246, -0.0111503], angle = 0.0808717, degree = 0.00141148]]
+	t_model = [0.0756693, 1.48864, -0.0107183]
+	r_model = [axis = [-0.0196686, -0.135928, 0.990523], angle = 3.15889, degree = 0.0551331]
+	trans_model = [translation = [0.0756693, 1.48864, -0.0107183], rotation = [axis = [-0.0196686, -0.135928, 0.990523], angle = 3.15889, degree = 0.0551331]]
+45 = 	name = hairA2
+	id = 45
+	parent = 44
+	children = [46, ]
+	t_local = [-1.77636e-17, 0.0485687, -7.10543e-17]
+	r_local = [axis = [0.92808, 0.00369495, -0.372403], angle = 0.0776554, degree = 0.00135534]
+	trans_local = [translation = [-1.77636e-17, 0.0485687, -7.10543e-17], rotation = [axis = [0.928043, 0.0036948, -0.372389], angle = 0.0776585, degree = 0.0013554]]
+	t_model = [0.0767611, 1.44188, -0.0237794]
+	r_model = [axis = [-0.0181422, -0.100425, 0.994779], angle = 3.12879, degree = 0.0546076]
+	trans_model = [translation = [0.0767611, 1.44188, -0.0237794], rotation = [axis = [-0.0181422, -0.100425, 0.994779], angle = 3.12879, degree = 0.0546076]]
+46 = 	name = hairA2_seg_1_joint
+	id = 46
+	parent = 45
+	children = [47, ]
+	t_local = [8.88178e-18, 0.0432529, 0]
+	r_local = [axis = [0.881953, -0.0296811, 0.470416], angle = 0.106456, degree = 0.001858]
+	trans_local = [translation = [8.88178e-18, 0.0432529, 0], rotation = [axis = [0.881935, -0.0296804, 0.470406], angle = 0.106458, degree = 0.00185804]]
+	t_model = [0.0763677, 1.3995, -0.0324311]
+	r_model = [axis = [-0.0187611, -0.0531692, 0.998409], angle = 3.17721, degree = 0.0554528]
+	trans_model = [translation = [0.0763677, 1.3995, -0.0324311], rotation = [axis = [-0.0187611, -0.0531692, 0.998409], angle = 3.17721, degree = 0.0554528]]
+47 = 	name = hairA3
+	id = 47
+	parent = 46
+	children = []
+	t_local = [3.55271e-17, 0.0430546, 7.10543e-17]
+	r_local = [axis = [0.0970189, 0.166753, 0.981214], angle = 3.17457, degree = 0.0554066]
+	trans_local = [translation = [3.55271e-17, 0.0430546, 7.10543e-17], rotation = [axis = [0.0970189, 0.166753, 0.981214], angle = 3.17457, degree = 0.0554066]]
+	t_model = [0.0779845, 1.35672, -0.036972]
+	r_model = [axis = [0.881992, -0.453585, 0.127881], angle = 0.504223, degree = 0.00880035]
+	trans_model = [translation = [0.0779845, 1.35672, -0.036972], rotation = [axis = [0.881992, -0.453585, 0.127881], angle = 0.504223, degree = 0.00880035]]
+48 = 	name = joint1
+	id = 48
+	parent = 27
+	children = [49, ]
+	t_local = [-0.00381849, 0.208825, 0.0127627]
+	r_local = [axis = [0.612742, 0.766342, 0.193045], angle = 2.49707, degree = 0.043582]
+	trans_local = [translation = [-0.00381849, 0.208825, 0.0127627], rotation = [axis = [0.612742, 0.766342, 0.193045], angle = 2.49707, degree = 0.043582]]
+	t_model = [-0.00597684, 1.61455, 0.0699796]
+	r_model = [axis = [0.627966, 0.728113, 0.274792], angle = 2.5902, degree = 0.0452075]
+	trans_model = [translation = [-0.00597684, 1.61455, 0.0699796], rotation = [axis = [0.627966, 0.728113, 0.274792], angle = 2.5902, degree = 0.0452075]]
+49 = 	name = joint2
+	id = 49
+	parent = 48
+	children = [50, ]
+	t_local = [0.0112996, 1.42109e-16, -9.76996e-17]
+	r_local = [axis = [-4.23281e-18, -7.20708e-16, -1], angle = 0.568345, degree = 0.0099195]
+	trans_local = [translation = [0.0112996, 1.42109e-16, -9.76996e-17], rotation = [axis = [-4.2328e-18, -7.20708e-16, -1], angle = 0.568345, degree = 0.0099195]]
+	t_model = [-0.00735037, 1.62575, 0.0692802]
+	r_model = [axis = [0.407181, 0.893704, 0.188406], angle = 2.45747, degree = 0.0428909]
+	trans_model = [translation = [-0.00735037, 1.62575, 0.0692802], rotation = [axis = [0.407181, 0.893704, 0.188406], angle = 2.45747, degree = 0.0428909]]
+50 = 	name = joint3
+	id = 50
+	parent = 49
+	children = [51, ]
+	t_local = [0.0124897, 2.84217e-16, 1.86517e-16]
+	r_local = [axis = [0.0245703, -0.0110392, -0.999637], angle = 0.653192, degree = 0.0114003]
+	trans_local = [translation = [0.0124897, 2.84217e-16, 1.86517e-16], rotation = [axis = [0.0245703, -0.0110392, -0.999637], angle = 0.653192, degree = 0.0114003]]
+	t_model = [-0.013354, 1.6353, 0.0639265]
+	r_model = [axis = [0.10416, 0.992945, 0.0566641], angle = 2.3737, degree = 0.041429]
+	trans_model = [translation = [-0.013354, 1.6353, 0.0639265], rotation = [axis = [0.10416, 0.992945, 0.0566641], angle = 2.3737, degree = 0.041429]]
+51 = 	name = joint4
+	id = 51
+	parent = 50
+	children = [52, ]
+	t_local = [0.0161318, 0.00102441, 0.000124468]
+	r_local = [axis = [-0.179941, 0.779253, -0.600322], angle = 0.556557, degree = 0.00971375]
+	trans_local = [translation = [0.0161318, 0.00102441, 0.000124468], rotation = [axis = [-0.179941, 0.779253, -0.600322], angle = 0.556557, degree = 0.00971375]]
+	t_model = [-0.024429, 1.63981, 0.0530482]
+	r_model = [axis = [-0.0901399, 0.994365, 0.0558033], angle = 2.78667, degree = 0.0486365]
+	trans_model = [translation = [-0.024429, 1.63981, 0.0530482], rotation = [axis = [-0.0901399, 0.994365, 0.0558033], angle = 2.78667, degree = 0.0486365]]
+52 = 	name = joint5
+	id = 52
+	parent = 51
+	children = []
+	t_local = [0.0129913, -0.00200772, -0.00183157]
+	r_local = [axis = [0.362272, -0.858788, 0.362272], angle = 1.72244, degree = 0.0300623]
+	trans_local = [translation = [0.0129913, -0.00200772, -0.00183157], rotation = [axis = [0.362272, -0.858788, 0.362272], angle = 1.72244, degree = 0.0300623]]
+	t_model = [-0.0366334, 1.63558, 0.0499857]
+	r_model = [axis = [0.456274, 0.868001, -0.195927], angle = 1.40891, degree = 0.0245901]
+	trans_model = [translation = [-0.0366334, 1.63558, 0.0499857], rotation = [axis = [0.456274, 0.868001, -0.195927], angle = 1.40891, degree = 0.0245901]]
+53 = 	name = LeftShoulder
+	id = 53
+	parent = 25
+	children = [54, ]
+	t_local = [0.035, 0.05, -0.0175844]
+	r_local = [axis = [1, 0, 0], angle = 0, degree = 0]
+	trans_local = [translation = [0.035, 0.05, -0.0175844], rotation = [axis = [1, 0, 0], angle = 0, degree = 0]]
+	t_model = [0.0342217, 1.29314, 0.0108072]
+	r_model = [axis = [-0.966529, 0.191349, -0.170651], angle = 0.0577927, degree = 0.00100867]
+	trans_model = [translation = [0.0342217, 1.29314, 0.0108072], rotation = [axis = [-0.966529, 0.191349, -0.170651], angle = 0.0577927, degree = 0.00100867]]
+54 = 	name = LeftArm
+	id = 54
+	parent = 53
+	children = [55, ]
+	t_local = [0.0705753, -0.0130402, -0.0137573]
+	r_local = [axis = [0.114567, 0.099258, -0.988444], angle = 1.42452, degree = 0.0248625]
+	trans_local = [translation = [0.0705753, -0.0130402, -0.0137573], rotation = [axis = [0.114567, 0.099258, -0.988444], angle = 1.42452, degree = 0.0248625]]
+	t_model = [0.104509, 1.27863, -0.00295964]
+	r_model = [axis = [0.0769629, 0.0772105, -0.99404], angle = 1.42992, degree = 0.0249568]
+	trans_model = [translation = [0.104509, 1.27863, -0.00295964], rotation = [axis = [0.0769629, 0.0772105, -0.99404], angle = 1.42992, degree = 0.0249568]]
+55 = 	name = LeftForeArm
+	id = 55
+	parent = 54
+	children = [56, ]
+	t_local = [0.202184, -2.64662e-08, 2.28215e-08]
+	r_local = [axis = [0.455504, -0.877857, 0.147932], angle = 0.439988, degree = 0.00767924]
+	trans_local = [translation = [0.202184, -2.64662e-08, 2.28215e-08], rotation = [axis = [0.455504, -0.877857, 0.147932], angle = 0.439988, degree = 0.00767924]]
+	t_model = [0.133927, 1.08068, -0.0317118]
+	r_model = [axis = [0.00168852, -0.249939, -0.96826], angle = 1.40683, degree = 0.0245537]
+	trans_model = [translation = [0.133927, 1.08068, -0.0317118], rotation = [axis = [0.00168852, -0.249939, -0.96826], angle = 1.40683, degree = 0.0245537]]
+56 = 	name = LeftHand
+	id = 56
+	parent = 55
+	children = [57, 61, 65, 69, 73, ]
+	t_local = [0.225, 0.00500001, -6.97871e-09]
+	r_local = [axis = [-0.62633, -0.234288, 0.743516], angle = 0.136123, degree = 0.00237579]
+	trans_local = [translation = [0.225, 0.00500001, -6.97871e-09], rotation = [axis = [-0.62633, -0.234288, 0.743516], angle = 0.136123, degree = 0.00237579]]
+	t_model = [0.17543, 0.86674, 0.0244831]
+	r_model = [axis = [-0.0808195, -0.239478, -0.967532], angle = 1.31993, degree = 0.0230372]
+	trans_model = [translation = [0.17543, 0.86674, 0.0244831], rotation = [axis = [-0.0808195, -0.239478, -0.967532], angle = 1.31993, degree = 0.0230372]]
+57 = 	name = LeftHandMiddle1
+	id = 57
+	parent = 56
+	children = [58, ]
+	t_local = [0.06, 0.00199994, 0.005]
+	r_local = [axis = [-0.0371984, -0.0492974, -0.998091], angle = 0.392699, degree = 0.0068539]
+	trans_local = [translation = [0.06, 0.00199994, 0.005], rotation = [axis = [-0.0371984, -0.0492974, -0.998091], angle = 0.392699, degree = 0.0068539]]
+	t_model = [0.191657, 0.813223, 0.0468807]
+	r_model = [axis = [-0.0417397, -0.20831, -0.977172], angle = 1.70645, degree = 0.0297831]
+	trans_model = [translation = [0.191657, 0.813223, 0.0468807], rotation = [axis = [-0.0417397, -0.20831, -0.977172], angle = 1.70645, degree = 0.0297831]]
+58 = 	name = LeftHandMiddle2
+	id = 58
+	parent = 57
+	children = [59, ]
+	t_local = [0.0311, -2.41142e-09, -9.32173e-09]
+	r_local = [axis = [-5.46788e-08, -0.050377, -0.998731], angle = 0.392699, degree = 0.00685389]
+	trans_local = [translation = [0.0311, -2.41142e-09, -9.32173e-09], rotation = [axis = [-5.47574e-08, -0.0503769, -0.998729], angle = 0.392699, degree = 0.0068539]]
+	t_model = [0.187513, 0.783419, 0.0547397]
+	r_model = [axis = [0.00865893, 0.192268, 0.981304], angle = 4.18864, degree = 0.0731056]
+	trans_model = [translation = [0.187513, 0.783419, 0.0547397], rotation = [axis = [0.00865893, 0.192268, 0.981304], angle = 4.18864, degree = 0.0731056]]
+59 = 	name = LeftHandMiddle3
+	id = 59
+	parent = 58
+	children = [60, ]
+	t_local = [0.0217, 3.81949e-09, -5.32304e-09]
+	r_local = [axis = [7.33398e-08, -0.0503772, -0.99873], angle = 0.392699, degree = 0.0068539]
+	trans_local = [translation = [0.0217, 3.81949e-09, -5.32304e-09], rotation = [axis = [7.36184e-08, -0.0503772, -0.998731], angle = 0.392699, degree = 0.00685389]]
+	t_model = [0.176663, 0.765033, 0.0586292]
+	r_model = [axis = [-0.0176852, 0.179308, 0.983634], angle = 3.7996, degree = 0.0663156]
+	trans_model = [translation = [0.176663, 0.765033, 0.0586292], rotation = [axis = [-0.0176852, 0.179308, 0.983634], angle = 3.7996, degree = 0.0663156]]
+60 = 	name = LeftHandMiddle4
+	id = 60
+	parent = 59
+	children = []
+	t_local = [0.01955, 4.76064e-15, 3.55271e-17]
+	r_local = [axis = [1, 0, 0], angle = 0, degree = 0]
+	trans_local = [translation = [0.01955, 4.76064e-15, 3.55271e-17], rotation = [axis = [1, 0, 0], angle = 0, degree = 0]]
+	t_model = [0.161205, 0.753162, 0.0601638]
+	r_model = [axis = [-0.0176852, 0.179308, 0.983634], angle = 3.7996, degree = 0.0663156]
+	trans_model = [translation = [0.161205, 0.753162, 0.0601638], rotation = [axis = [-0.0176852, 0.179308, 0.983634], angle = 3.7996, degree = 0.0663156]]
+61 = 	name = LeftHandThumb1
+	id = 61
+	parent = 56
+	children = [62, ]
+	t_local = [0.0117, -0.00869987, 0.0132]
+	r_local = [axis = [0.93263, -0.341031, 0.117896], angle = 1.88797, degree = 0.0329513]
+	trans_local = [translation = [0.0117, -0.00869987, 0.0132], rotation = [axis = [0.93263, -0.341031, 0.117896], angle = 1.88797, degree = 0.0329513]]
+	t_model = [0.167826, 0.856742, 0.0396169]
+	r_model = [axis = [0.455359, -0.873378, -0.172798], angle = 2.05512, degree = 0.0358686]
+	trans_model = [translation = [0.167826, 0.856742, 0.0396169], rotation = [axis = [0.455359, -0.873378, -0.172798], angle = 2.05512, degree = 0.0358686]]
+62 = 	name = LeftHandThumb2
+	id = 62
+	parent = 61
+	children = [63, ]
+	t_local = [0.0277, -1.88247e-09, 1.86296e-08]
+	r_local = [axis = [-1.38778e-17, -1.83498e-16, -1], angle = 0.150971, degree = 0.00263494]
+	trans_local = [translation = [0.0277, -1.88247e-09, 1.86296e-08], rotation = [axis = [-1.38778e-17, -1.83498e-16, -1], angle = 0.150971, degree = 0.00263494]]
+	t_model = [0.163346, 0.83636, 0.0578326]
+	r_model = [axis = [0.515412, -0.829286, -0.215952], angle = 2.08449, degree = 0.0363813]
+	trans_model = [translation = [0.163346, 0.83636, 0.0578326], rotation = [axis = [0.515412, -0.829286, -0.215952], angle = 2.08449, degree = 0.0363813]]
+63 = 	name = LeftHandThumb3
+	id = 63
+	parent = 62
+	children = [64, ]
+	t_local = [0.0186, -1.20346e-08, -1.22993e-08]
+	r_local = [axis = [2.77554e-17, 8.02846e-16, -0.999995], angle = 0.0691155, degree = 0.00120629]
+	trans_local = [translation = [0.0186, -1.20346e-08, -1.22993e-08], rotation = [axis = [2.77541e-17, 8.02805e-16, -0.999945], angle = 0.069119, degree = 0.00120635]]
+	t_model = [0.161575, 0.821005, 0.068179]
+	r_model = [axis = [-0.54131, 0.807334, 0.234938], angle = 4.18311, degree = 0.073009]
+	trans_model = [translation = [0.161575, 0.821005, 0.068179], rotation = [axis = [-0.54131, 0.807334, 0.234938], angle = 4.18311, degree = 0.073009]]
+64 = 	name = LeftHandThumb4
+	id = 64
+	parent = 63
+	children = []
+	t_local = [0.022, 2.13163e-16, -2.13163e-16]
+	r_local = [axis = [1, 0, 0], angle = 0, degree = 0]
+	trans_local = [translation = [0.022, 2.13163e-16, -2.13163e-16], rotation = [axis = [1, 0, 0], angle = 0, degree = 0]]
+	t_model = [0.160168, 0.802075, 0.0792995]
+	r_model = [axis = [-0.54131, 0.807334, 0.234938], angle = 4.18311, degree = 0.073009]
+	trans_model = [translation = [0.160168, 0.802075, 0.0792995], rotation = [axis = [-0.54131, 0.807334, 0.234938], angle = 4.18311, degree = 0.073009]]
+65 = 	name = LeftHandIndex1
+	id = 65
+	parent = 56
+	children = [66, ]
+	t_local = [0.059, -0.00130007, 0.021]
+	r_local = [axis = [0.148844, 0.157488, -0.976239], angle = 0.267036, degree = 0.00466066]
+	trans_local = [translation = [0.059, -0.00130007, 0.021], rotation = [axis = [0.148844, 0.157488, -0.976239], angle = 0.267036, degree = 0.00466066]]
+	t_model = [0.185492, 0.817224, 0.0615051]
+	r_model = [axis = [-0.00275216, -0.208938, -0.977925], angle = 1.56273, degree = 0.0272748]
+	trans_model = [translation = [0.185492, 0.817224, 0.0615051], rotation = [axis = [-0.00275216, -0.208938, -0.977925], angle = 1.56273, degree = 0.0272748]]
+66 = 	name = LeftHandIndex2
+	id = 66
+	parent = 65
+	children = [67, ]
+	t_local = [0.0306, -3.71236e-10, -8.5842e-09]
+	r_local = [axis = [-4.41155e-07, -0.0520269, -0.998645], angle = 0.267036, degree = 0.00466066]
+	trans_local = [translation = [0.0306, -3.71236e-10, -8.5842e-09], rotation = [axis = [-4.41178e-07, -0.0520269, -0.998645], angle = 0.267036, degree = 0.00466066]]
+	t_model = [0.185739, 0.787317, 0.0679801]
+	r_model = [axis = [0.0162594, -0.190769, -0.981501], angle = 1.8268, degree = 0.0318837]
+	trans_model = [translation = [0.185739, 0.787317, 0.0679801], rotation = [axis = [0.0162594, -0.190769, -0.981501], angle = 1.8268, degree = 0.0318837]]
+67 = 	name = LeftHandIndex3
+	id = 67
+	parent = 66
+	children = [68, ]
+	t_local = [0.0174, 3.15187e-09, -2.55841e-10]
+	r_local = [axis = [-3.13581e-07, -0.0520264, -0.998645], angle = 0.267036, degree = 0.00466066]
+	trans_local = [translation = [0.0174, 3.15187e-09, -2.55841e-10], rotation = [axis = [-3.13678e-07, -0.0520264, -0.998645], angle = 0.267036, degree = 0.00466066]]
+	t_model = [0.181339, 0.770728, 0.0708433]
+	r_model = [axis = [0.0317245, -0.175881, -0.9839], angle = 2.09143, degree = 0.0365023]
+	trans_model = [translation = [0.181339, 0.770728, 0.0708433], rotation = [axis = [0.0317245, -0.175881, -0.9839], angle = 2.09143, degree = 0.0365023]]
+68 = 	name = LeftHandIndex4
+	id = 68
+	parent = 67
+	children = []
+	t_local = [0.0178, -1.74651e-13, -3.55271e-17]
+	r_local = [axis = [1, 0, 0], angle = 0, degree = 0]
+	trans_local = [translation = [0.0178, -1.74651e-13, -3.55271e-17], rotation = [axis = [1, 0, 0], angle = 0, degree = 0]]
+	t_model = [0.172511, 0.755387, 0.0727273]
+	r_model = [axis = [0.0317245, -0.175881, -0.9839], angle = 2.09143, degree = 0.0365023]
+	trans_model = [translation = [0.172511, 0.755387, 0.0727273], rotation = [axis = [0.0317245, -0.175881, -0.9839], angle = 2.09143, degree = 0.0365023]]
+69 = 	name = LeftHandRing1
+	id = 69
+	parent = 56
+	children = [70, ]
+	t_local = [0.0577, 0.00169997, -0.0116]
+	r_local = [axis = [-0.181686, -0.0185615, -0.983182], angle = 0.486947, degree = 0.00849882]
+	trans_local = [translation = [0.0577, 0.00169997, -0.0116], rotation = [axis = [-0.181686, -0.0185615, -0.983182], angle = 0.486947, degree = 0.00849882]]
+	t_model = [0.193664, 0.811067, 0.0303804]
+	r_model = [axis = [-0.0646366, -0.16853, -0.983575], angle = 1.79571, degree = 0.0313411]
+	trans_model = [translation = [0.193664, 0.811067, 0.0303804], rotation = [axis = [-0.0646366, -0.16853, -0.983575], angle = 1.79571, degree = 0.0313411]]
+70 = 	name = LeftHandRing2
+	id = 70
+	parent = 69
+	children = [71, ]
+	t_local = [0.0303, -4.81215e-09, 3.88329e-09]
+	r_local = [axis = [-2.87848e-08, -0.0312922, -0.999511], angle = 0.486947, degree = 0.00849882]
+	trans_local = [translation = [0.0303, -4.81215e-09, 3.88329e-09], rotation = [axis = [-2.88594e-08, -0.0312922, -0.99951], angle = 0.486947, degree = 0.00849883]]
+	t_model = [0.187062, 0.782419, 0.0377142]
+	r_model = [axis = [0.025437, 0.159421, 0.986883], angle = 4.00535, degree = 0.0699066]
+	trans_model = [translation = [0.187062, 0.782419, 0.0377142], rotation = [axis = [0.025437, 0.159421, 0.986883], angle = 4.00535, degree = 0.0699066]]
+71 = 	name = LeftHandRing3
+	id = 71
+	parent = 70
+	children = [72, ]
+	t_local = [0.017, -2.43654e-08, 6.60684e-09]
+	r_local = [axis = [-5.36268e-08, -0.0312921, -0.999511], angle = 0.486947, degree = 0.00849882]
+	trans_local = [translation = [0.017, -2.43654e-08, 6.60684e-09], rotation = [axis = [-5.37382e-08, -0.031292, -0.99951], angle = 0.486947, degree = 0.00849883]]
+	t_model = [0.176037, 0.769777, 0.0404787]
+	r_model = [axis = [-0.00581028, 0.151982, 0.988366], angle = 3.52225, degree = 0.0614748]
+	trans_model = [translation = [0.176037, 0.769777, 0.0404787], rotation = [axis = [-0.00581028, 0.151982, 0.988366], angle = 3.52225, degree = 0.0614748]]
+72 = 	name = LeftHandRing4
+	id = 72
+	parent = 71
+	children = []
+	t_local = [0.018, -4.40536e-15, 0]
+	r_local = [axis = [1, 0, 0], angle = 0, degree = 0]
+	trans_local = [translation = [0.018, -4.40536e-15, 0], rotation = [axis = [1, 0, 0], angle = 0, degree = 0]]
+	t_model = [0.159326, 0.763137, 0.0412957]
+	r_model = [axis = [-0.00581028, 0.151982, 0.988366], angle = 3.52225, degree = 0.0614748]
+	trans_model = [translation = [0.159326, 0.763137, 0.0412957], rotation = [axis = [-0.00581028, 0.151982, 0.988366], angle = 3.52225, degree = 0.0614748]]
+73 = 	name = LeftHandPinky1
+	id = 73
+	parent = 56
+	children = [74, ]
+	t_local = [0.052, -0.00110003, -0.027]
+	r_local = [axis = [-0.311282, -0.00883625, -0.950276], angle = 0.486947, degree = 0.00849883]
+	trans_local = [translation = [0.052, -0.00110003, -0.027], rotation = [axis = [-0.311282, -0.00883625, -0.950276], angle = 0.486947, degree = 0.00849883]]
+	t_model = [0.192224, 0.811622, 0.0137941]
+	r_model = [axis = [-0.0962557, -0.14247, -0.985108], angle = 1.78674, degree = 0.0311845]
+	trans_model = [translation = [0.192224, 0.811622, 0.0137941], rotation = [axis = [-0.0962557, -0.14247, -0.985108], angle = 1.78674, degree = 0.0311845]]
+74 = 	name = LeftHandPinky2
+	id = 74
+	parent = 73
+	children = [75, ]
+	t_local = [0.023, 1.20039e-08, -5.44745e-09]
+	r_local = [axis = [6.11543e-08, -0.0114363, -0.999934], angle = 0.486947, degree = 0.00849883]
+	trans_local = [translation = [0.023, 1.20039e-08, -5.44745e-09], rotation = [axis = [6.12018e-08, -0.0114363, -0.999934], angle = 0.486947, degree = 0.00849883]]
+	t_model = [0.187554, 0.789874, 0.019643]
+	r_model = [axis = [0.0531318, 0.140755, 0.988618], angle = 4.01502, degree = 0.0700753]
+	trans_model = [translation = [0.187554, 0.789874, 0.019643], rotation = [axis = [0.0531318, 0.140755, 0.988618], angle = 4.01502, degree = 0.0700753]]
+75 = 	name = LeftHandPinky3
+	id = 75
+	parent = 74
+	children = [76, ]
+	t_local = [0.012, 1.7562e-08, -5.99466e-09]
+	r_local = [axis = [-1.51433e-07, -0.0114364, -0.999934], angle = 0.486947, degree = 0.00849883]
+	trans_local = [translation = [0.012, 1.7562e-08, -5.99466e-09], rotation = [axis = [-1.51512e-07, -0.0114364, -0.999934], angle = 0.486947, degree = 0.00849883]]
+	t_model = [0.179904, 0.780927, 0.0219729]
+	r_model = [axis = [0.0188072, 0.139205, 0.990085], angle = 3.53245, degree = 0.061653]
+	trans_model = [translation = [0.179904, 0.780927, 0.0219729], rotation = [axis = [0.0188072, 0.139205, 0.990085], angle = 3.53245, degree = 0.061653]]
+76 = 	name = LeftHandPinky4
+	id = 76
+	parent = 75
+	children = []
+	t_local = [0.015, -2.70006e-15, -7.10543e-17]
+	r_local = [axis = [1, 0, 0], angle = 0, degree = 0]
+	trans_local = [translation = [0.015, -2.70006e-15, -7.10543e-17], rotation = [axis = [1, 0, 0], angle = 0, degree = 0]]
+	t_model = [0.166045, 0.775345, 0.023306]
+	r_model = [axis = [0.0188072, 0.139205, 0.990085], angle = 3.53245, degree = 0.061653]
+	trans_model = [translation = [0.166045, 0.775345, 0.023306], rotation = [axis = [0.0188072, 0.139205, 0.990085], angle = 3.53245, degree = 0.061653]]
+77 = 	name = RightShoulder
+	id = 77
+	parent = 25
+	children = [78, ]
+	t_local = [-0.035, 0.05, -0.0175844]
+	r_local = [axis = [1, 0, 0], angle = 0, degree = 0]
+	trans_local = [translation = [-0.035, 0.05, -0.0175844], rotation = [axis = [1, 0, 0], angle = 0, degree = 0]]
+	t_model = [-0.0357706, 1.29385, 0.0115616]
+	r_model = [axis = [-0.966529, 0.191349, -0.170651], angle = 0.0577927, degree = 0.00100867]
+	trans_model = [translation = [-0.0357706, 1.29385, 0.0115616], rotation = [axis = [-0.966529, 0.191349, -0.170651], angle = 0.0577927, degree = 0.00100867]]
+78 = 	name = RightArm
+	id = 78
+	parent = 77
+	children = [79, ]
+	t_local = [-0.0705776, -0.0130424, -0.013757]
+	r_local = [axis = [0.251865, -0.00941288, 0.967717], angle = 1.45929, degree = 0.0254694]
+	trans_local = [translation = [-0.0705776, -0.0130424, -0.013757], rotation = [axis = [0.251865, -0.00941289, 0.967717], angle = 1.45929, degree = 0.0254694]]
+	t_model = [-0.106621, 1.28078, -0.000683683]
+	r_model = [axis = [0.228785, 0.0228494, 0.973209], angle = 1.43636, degree = 0.0250692]
+	trans_model = [translation = [-0.106621, 1.28078, -0.000683683], rotation = [axis = [0.228785, 0.0228494, 0.973209], angle = 1.43636, degree = 0.0250692]]
+79 = 	name = RightForeArm
+	id = 79
+	parent = 78
+	children = [80, ]
+	t_local = [-0.202181, -1.78328e-07, -3.81918e-08]
+	r_local = [axis = [0.529876, 0.76039, -0.375549], angle = 0.283793, degree = 0.00495312]
+	trans_local = [translation = [-0.202181, -1.78328e-07, -3.81918e-08], rotation = [axis = [0.529875, 0.760388, -0.375548], angle = 0.283794, degree = 0.00495313]]
+	t_model = [-0.142883, 1.08487, -0.0350888]
+	r_model = [axis = [0.211458, 0.236445, 0.948356], angle = 1.39469, degree = 0.024342]
+	trans_model = [translation = [-0.142883, 1.08487, -0.0350888], rotation = [axis = [0.211458, 0.236445, 0.948356], angle = 1.39469, degree = 0.024342]]
+80 = 	name = RightHand
+	id = 80
+	parent = 79
+	children = [81, 85, 89, 93, 97, ]
+	t_local = [-0.225, 0.00499999, -3.20914e-08]
+	r_local = [axis = [-0.9575, 0.0161568, -0.287979], angle = 0.33851, degree = 0.00590812]
+	trans_local = [translation = [-0.225, 0.00499999, -3.20914e-08], rotation = [axis = [-0.957502, 0.0161569, -0.28798], angle = 0.33851, degree = 0.00590811]]
+	t_model = [-0.195063, 0.866621, -0.0179618]
+	r_model = [axis = [0.00202237, 0.10171, 0.994812], angle = 1.26474, degree = 0.0220739]
+	trans_model = [translation = [-0.195063, 0.866621, -0.0179618], rotation = [axis = [0.00202237, 0.10171, 0.994812], angle = 1.26474, degree = 0.0220739]]
+81 = 	name = RightHandMiddle1
+	id = 81
+	parent = 80
+	children = [82, ]
+	t_local = [-0.06, 0.00199997, 0.005]
+	r_local = [axis = [-0.00860494, -0.187817, 0.982166], angle = 0.42164, degree = 0.007359]
+	trans_local = [translation = [-0.06, 0.00199997, 0.005], rotation = [axis = [-0.00860495, -0.187817, 0.982168], angle = 0.421639, degree = 0.00735899]]
+	t_model = [-0.214546, 0.810659, -0.00711798]
+	r_model = [axis = [0.0474084, 0.0347373, 0.998271], angle = 1.67241, degree = 0.0291891]
+	trans_model = [translation = [-0.214546, 0.810659, -0.00711798], rotation = [axis = [0.0474084, 0.0347373, 0.998271], angle = 1.67241, degree = 0.0291891]]
+82 = 	name = RightHandMiddle2
+	id = 82
+	parent = 81
+	children = [83, ]
+	t_local = [-0.0311, 1.43588e-09, 3.16623e-11]
+	r_local = [axis = [1.02757e-07, 0.0503772, 0.99873], angle = 0.392699, degree = 0.0068539]
+	trans_local = [translation = [-0.0311, 1.43588e-09, 3.16623e-11], rotation = [axis = [1.02822e-07, 0.0503772, 0.99873], angle = 0.392699, degree = 0.0068539]]
+	t_model = [-0.211468, 0.779716, -0.00766438]
+	r_model = [axis = [0.0375629, 0.0291391, 0.998869], angle = 2.06469, degree = 0.0360356]
+	trans_model = [translation = [-0.211468, 0.779716, -0.00766438], rotation = [axis = [0.0375629, 0.0291391, 0.998869], angle = 2.06469, degree = 0.0360356]]
+83 = 	name = RightHandMiddle3
+	id = 83
+	parent = 82
+	children = [84, ]
+	t_local = [-0.0217001, 8.53024e-09, 6.08655e-10]
+	r_local = [axis = [8.96969e-08, 0.0503771, 0.99873], angle = 0.392699, degree = 0.0068539]
+	trans_local = [translation = [-0.0217001, 8.53024e-09, 6.08655e-10], rotation = [axis = [8.9437e-08, 0.0503771, 0.99873], angle = 0.392699, degree = 0.0068539]]
+	t_model = [-0.201226, 0.760596, -0.00830779]
+	r_model = [axis = [0.0298033, 0.0247263, 0.99925], angle = 2.45706, degree = 0.0428838]
+	trans_model = [translation = [-0.201226, 0.760596, -0.00830779], rotation = [axis = [0.0298033, 0.0247263, 0.99925], angle = 2.45706, degree = 0.0428838]]
+84 = 	name = RightHandMiddle4
+	id = 84
+	parent = 83
+	children = []
+	t_local = [-0.01955, 0, 9.99201e-18]
+	r_local = [axis = [1, 0, 0], angle = 0, degree = 0]
+	trans_local = [translation = [-0.01955, 0, 9.99201e-18], rotation = [axis = [1, 0, 0], angle = 0, degree = 0]]
+	t_model = [-0.186111, 0.748218, -0.0090354]
+	r_model = [axis = [0.0298033, 0.0247263, 0.99925], angle = 2.45706, degree = 0.0428838]
+	trans_model = [translation = [-0.186111, 0.748218, -0.0090354], rotation = [axis = [0.0298033, 0.0247263, 0.99925], angle = 2.45706, degree = 0.0428838]]
+85 = 	name = RightHandPinky1
+	id = 85
+	parent = 80
+	children = [86, ]
+	t_local = [-0.052, -0.0011, -0.027]
+	r_local = [axis = [-0.290628, -0.100726, 0.95152], angle = 0.484807, degree = 0.00846149]
+	trans_local = [translation = [-0.052, -0.0011, -0.027], rotation = [axis = [-0.290628, -0.100726, 0.951519], angle = 0.484808, degree = 0.00846149]]
+	t_model = [-0.212343, 0.815091, -0.0398764]
+	r_model = [axis = [-0.0357567, -0.00320583, 0.999356], angle = 1.72567, degree = 0.0301187]
+	trans_model = [translation = [-0.212343, 0.815091, -0.0398764], rotation = [axis = [-0.0357567, -0.00320583, 0.999356], angle = 1.72567, degree = 0.0301187]]
+86 = 	name = RightHandPinky2
+	id = 86
+	parent = 85
+	children = [87, ]
+	t_local = [-0.023, 7.75141e-09, 1.04972e-10]
+	r_local = [axis = [6.22567e-08, 0.0114365, 0.999934], angle = 0.486947, degree = 0.00849883]
+	trans_local = [translation = [-0.023, 7.75141e-09, 1.04972e-10], rotation = [axis = [6.2197e-08, 0.0114365, 0.999934], angle = 0.486947, degree = 0.00849883]]
+	t_model = [-0.208829, 0.792378, -0.0390006]
+	r_model = [axis = [-0.0324873, 0.00668629, 0.99945], angle = 2.21232, degree = 0.0386122]
+	trans_model = [translation = [-0.208829, 0.792378, -0.0390006], rotation = [axis = [-0.0324873, 0.00668629, 0.99945], angle = 2.21232, degree = 0.0386122]]
+87 = 	name = RightHandPinky3
+	id = 87
+	parent = 86
+	children = [88, ]
+	t_local = [-0.012, -9.36446e-10, 1.01504e-09]
+	r_local = [axis = [-1.72941e-07, 0.0114364, 0.999935], angle = 0.486947, degree = 0.00849882]
+	trans_local = [translation = [-0.012, -9.36446e-10, 1.01504e-09], rotation = [axis = [-1.72908e-07, 0.0114364, 0.999934], angle = 0.486947, degree = 0.00849883]]
+	t_model = [-0.201669, 0.782774, -0.0383135]
+	r_model = [axis = [-0.029939, 0.0143885, 0.999448], angle = 2.69902, degree = 0.0471069]
+	trans_model = [translation = [-0.201669, 0.782774, -0.0383135], rotation = [axis = [-0.029939, 0.0143885, 0.999448], angle = 2.69902, degree = 0.0471069]]
+88 = 	name = RightHandPinky4
+	id = 88
+	parent = 87
+	children = []
+	t_local = [-0.015, -3.12639e-15, 4.44089e-18]
+	r_local = [axis = [1, 0, 0], angle = 0, degree = 0]
+	trans_local = [translation = [-0.015, -3.12639e-15, 4.44089e-18], rotation = [axis = [1, 0, 0], angle = 0, degree = 0]]
+	t_model = [-0.18814, 0.776365, -0.0373666]
+	r_model = [axis = [-0.029939, 0.0143885, 0.999448], angle = 2.69902, degree = 0.0471069]
+	trans_model = [translation = [-0.18814, 0.776365, -0.0373666], rotation = [axis = [-0.029939, 0.0143885, 0.999448], angle = 2.69902, degree = 0.0471069]]
+89 = 	name = RightHandRing1
+	id = 89
+	parent = 80
+	children = [90, ]
+	t_local = [-0.0577, 0.00169998, -0.0116]
+	r_local = [axis = [-0.144762, -0.177166, 0.973476], angle = 0.49957, degree = 0.00871913]
+	trans_local = [translation = [-0.0577, 0.00169998, -0.0116], rotation = [axis = [-0.144762, -0.177166, 0.973476], angle = 0.49957, degree = 0.00871913]]
+	t_model = [-0.215201, 0.811607, -0.0238396]
+	r_model = [axis = [0.0163317, 0.00208417, 0.999864], angle = 1.74536, degree = 0.0304623]
+	trans_model = [translation = [-0.215201, 0.811607, -0.0238396], rotation = [axis = [0.0163317, 0.00208417, 0.999864], angle = 1.74536, degree = 0.0304623]]
+90 = 	name = RightHandRing2
+	id = 90
+	parent = 89
+	children = [91, ]
+	t_local = [-0.0303, -1.45262e-08, 7.40373e-11]
+	r_local = [axis = [-5.11232e-08, 0.0312923, 0.99951], angle = 0.486947, degree = 0.00849883]
+	trans_local = [translation = [-0.0303, -1.45262e-08, 7.40373e-11], rotation = [axis = [-5.12503e-08, 0.0312923, 0.99951], angle = 0.486947, degree = 0.00849883]]
+	t_model = [-0.209948, 0.78177, -0.0243581]
+	r_model = [axis = [0.00751199, 0.00376668, 0.999965], angle = 2.23208, degree = 0.0389571]
+	trans_model = [translation = [-0.209948, 0.78177, -0.0243581], rotation = [axis = [0.00751199, 0.00376668, 0.999965], angle = 2.23208, degree = 0.0389571]]
+91 = 	name = RightHandRing3
+	id = 91
+	parent = 90
+	children = [92, ]
+	t_local = [-0.017, -9.31591e-09, -8.35667e-10]
+	r_local = [axis = [6.58758e-08, 0.0312922, 0.999511], angle = 0.486947, degree = 0.00849882]
+	trans_local = [translation = [-0.017, -9.31591e-09, -8.35667e-10], rotation = [axis = [6.568e-08, 0.0312922, 0.99951], angle = 0.486947, degree = 0.00849883]]
+	t_model = [-0.19951, 0.768353, -0.0245137]
+	r_model = [axis = [0.000601412, 0.0050847, 0.999987], angle = 2.71884, degree = 0.0474527]
+	trans_model = [translation = [-0.19951, 0.768353, -0.0245137], rotation = [axis = [0.000601412, 0.0050847, 0.999987], angle = 2.71884, degree = 0.0474527]]
+92 = 	name = RightHandRing4
+	id = 92
+	parent = 91
+	children = []
+	t_local = [-0.018, -1.91847e-15, 4.44089e-18]
+	r_local = [axis = [1, 0, 0], angle = 0, degree = 0]
+	trans_local = [translation = [-0.018, -1.91847e-15, 4.44089e-18], rotation = [axis = [1, 0, 0], angle = 0, degree = 0]]
+	t_model = [-0.183094, 0.760968, -0.0244968]
+	r_model = [axis = [0.000601412, 0.0050847, 0.999987], angle = 2.71884, degree = 0.0474527]
+	trans_model = [translation = [-0.183094, 0.760968, -0.0244968], rotation = [axis = [0.000601412, 0.0050847, 0.999987], angle = 2.71884, degree = 0.0474527]]
+93 = 	name = RightHandIndex1
+	id = 93
+	parent = 80
+	children = [94, ]
+	t_local = [-0.059, -0.00130004, 0.021]
+	r_local = [axis = [0.148843, -0.157488, 0.976238], angle = 0.267036, degree = 0.00466066]
+	trans_local = [translation = [-0.059, -0.00130004, 0.021], rotation = [axis = [0.148843, -0.157488, 0.976238], angle = 0.267036, degree = 0.00466066]]
+	t_model = [-0.20954, 0.811689, 0.00843109]
+	r_model = [axis = [0.0541068, 0.0785568, 0.99544], angle = 1.52164, degree = 0.0265576]
+	trans_model = [translation = [-0.20954, 0.811689, 0.00843109], rotation = [axis = [0.0541068, 0.0785568, 0.99544], angle = 1.52164, degree = 0.0265576]]
+94 = 	name = RightHandIndex2
+	id = 94
+	parent = 93
+	children = [95, ]
+	t_local = [-0.0306, -8.30556e-09, 9.34881e-10]
+	r_local = [axis = [-3.63145e-07, 0.0520265, 0.998647], angle = 0.267035, degree = 0.00466064]
+	trans_local = [translation = [-0.0306, -8.30556e-09, 9.34881e-10], rotation = [axis = [-3.6309e-07, 0.0520263, 0.998644], angle = 0.267036, degree = 0.00466066]]
+	t_model = [-0.211129, 0.781142, 0.00926489]
+	r_model = [axis = [0.0505638, 0.0689281, 0.99634], angle = 1.78825, degree = 0.0312108]
+	trans_model = [translation = [-0.211129, 0.781142, 0.00926489], rotation = [axis = [0.0505638, 0.0689281, 0.99634], angle = 1.78825, degree = 0.0312108]]
+95 = 	name = RightHandIndex3
+	id = 95
+	parent = 94
+	children = [96, ]
+	t_local = [-0.0173999, -1.35325e-09, -2.27708e-11]
+	r_local = [axis = [-7.22427e-08, 0.0520266, 0.998647], angle = 0.267035, degree = 0.00466064]
+	trans_local = [translation = [-0.0173999, -1.35325e-09, -2.27708e-11], rotation = [axis = [-7.23533e-08, 0.0520265, 0.998644], angle = 0.267036, degree = 0.00466066]]
+	t_model = [-0.207429, 0.76414, 0.00937029]
+	r_model = [axis = [0.047706, 0.0611667, 0.996987], angle = 2.05494, degree = 0.0358654]
+	trans_model = [translation = [-0.207429, 0.76414, 0.00937029], rotation = [axis = [0.047706, 0.0611667, 0.996987], angle = 2.05494, degree = 0.0358654]]
+96 = 	name = RightHandIndex4
+	id = 96
+	parent = 95
+	children = []
+	t_local = [-0.0178, -7.14095e-15, 2.22045e-18]
+	r_local = [axis = [1, 0, 0], angle = 0, degree = 0]
+	trans_local = [translation = [-0.0178, -7.14095e-15, 2.22045e-18], rotation = [axis = [1, 0, 0], angle = 0, degree = 0]]
+	t_model = [-0.199204, 0.748357, 0.00909327]
+	r_model = [axis = [0.047706, 0.0611667, 0.996987], angle = 2.05494, degree = 0.0358654]
+	trans_model = [translation = [-0.199204, 0.748357, 0.00909327], rotation = [axis = [0.047706, 0.0611667, 0.996987], angle = 2.05494, degree = 0.0358654]]
+97 = 	name = RightHandThumb1
+	id = 97
+	parent = 80
+	children = [98, ]
+	t_local = [-0.0117, -0.00870003, 0.0132]
+	r_local = [axis = [0.934122, 0.352667, -0.0551459], angle = 1.55818, degree = 0.0271954]
+	trans_local = [translation = [-0.0117, -0.00870003, 0.0132], rotation = [axis = [0.934123, 0.352667, -0.0551459], angle = 1.55818, degree = 0.0271954]]
+	t_model = [-0.189038, 0.853745, -0.00437079]
+	r_model = [axis = [0.469669, 0.772402, 0.427558], angle = 1.90153, degree = 0.033188]
+	trans_model = [translation = [-0.189038, 0.853745, -0.00437079], rotation = [axis = [0.469669, 0.772402, 0.427558], angle = 1.90153, degree = 0.033188]]
+98 = 	name = RightHandThumb2
+	id = 98
+	parent = 97
+	children = [99, ]
+	t_local = [-0.0277, -1.51783e-08, 2.60896e-08]
+	r_local = [axis = [8.65448e-17, 7.57506e-17, 1], angle = 0.150971, degree = 0.00263494]
+	trans_local = [translation = [-0.0277, -1.51783e-08, 2.60896e-08], rotation = [axis = [8.65448e-17, 7.57506e-17, 1], angle = 0.150971, degree = 0.00263494]]
+	t_model = [-0.188137, 0.829231, 0.0084964]
+	r_model = [axis = [0.514438, 0.717838, 0.469108], angle = 1.96928, degree = 0.0343704]
+	trans_model = [translation = [-0.188137, 0.829231, 0.0084964], rotation = [axis = [0.514438, 0.717838, 0.469108], angle = 1.96928, degree = 0.0343704]]
+99 = 	name = RightHandThumb3
+	id = 99
+	parent = 98
+	children = [100, ]
+	t_local = [-0.0186, 3.01005e-09, -2.25242e-08]
+	r_local = [axis = [0.296334, 0.26861, 0.916535], angle = 0.448568, degree = 0.00782899]
+	trans_local = [translation = [-0.0186, 3.01005e-09, -2.25242e-08], rotation = [axis = [0.296333, 0.268609, 0.916534], angle = 0.448569, degree = 0.007829]]
+	t_model = [-0.187752, 0.811656, 0.0145717]
+	r_model = [axis = [0.601968, 0.603747, 0.522613], angle = 2.32799, degree = 0.040631]
+	trans_model = [translation = [-0.187752, 0.811656, 0.0145717], rotation = [axis = [0.601968, 0.603747, 0.522613], angle = 2.32799, degree = 0.040631]]
+100 = 	name = RightHandThumb4
+	id = 100
+	parent = 99
+	children = []
+	t_local = [-0.022, -1.06581e-16, 0]
+	r_local = [axis = [1, 0, 0], angle = 0, degree = 0]
+	trans_local = [translation = [-0.022, -1.06581e-16, 0], rotation = [axis = [1, 0, 0], angle = 0, degree = 0]]
+	t_model = [-0.186089, 0.789812, 0.0125498]
+	r_model = [axis = [0.601968, 0.603747, 0.522613], angle = 2.32799, degree = 0.040631]
+	trans_model = [translation = [-0.186089, 0.789812, 0.0125498], rotation = [axis = [0.601968, 0.603747, 0.522613], angle = 2.32799, degree = 0.040631]]
+101 = 	name = LeftUpLeg
+	id = 101
+	parent = 22
+	children = [102, ]
+	t_local = [0.0566001, -0.00999737, -0.00994009]
+	r_local = [axis = [-0.927414, -0.357801, 0.108995], angle = 0.190922, degree = 0.00333222]
+	trans_local = [translation = [0.0566001, -0.00999737, -0.00994009], rotation = [axis = [-0.92742, -0.357804, 0.108996], angle = 0.190921, degree = 0.0033322]]
+	t_model = [0.0519034, 0.917382, -0.00301542]
+	r_model = [axis = [-0.900191, -0.428173, 0.0795128], angle = 0.134364, degree = 0.00234509]
+	trans_model = [translation = [0.0519034, 0.917382, -0.00301542], rotation = [axis = [-0.900191, -0.428173, 0.0795128], angle = 0.134364, degree = 0.00234509]]
+102 = 	name = LeftLeg
+	id = 102
+	parent = 101
+	children = [103, ]
+	t_local = [3.80587e-06, -0.410061, -0.0176248]
+	r_local = [axis = [1, 4.5892e-06, 6.93015e-05], angle = 0.132248, degree = 0.00230817]
+	trans_local = [translation = [3.80587e-06, -0.410061, -0.0176248], rotation = [axis = [1.00001, 4.58926e-06, 6.93024e-05], angle = 0.132246, degree = 0.00230814]]
+	t_model = [0.0558727, 0.50822, 0.0290928]
+	r_model = [axis = [0.189026, -0.951488, 0.242844], angle = 0.0595525, degree = 0.00103939]
+	trans_model = [translation = [0.0558727, 0.50822, 0.0290928], rotation = [axis = [0.189026, -0.951488, 0.242844], angle = 0.0595525, degree = 0.00103939]]
+103 = 	name = LeftFoot
+	id = 103
+	parent = 102
+	children = [104, ]
+	t_local = [6.58894e-08, -0.4347, -0.0436002]
+	r_local = [axis = [-0.0836871, -0.992677, -0.0871558], angle = 0.151798, degree = 0.00264938]
+	trans_local = [translation = [6.58894e-08, -0.4347, -0.0436002], rotation = [axis = [-0.0836871, -0.992677, -0.0871558], angle = 0.151798, degree = 0.00264938]]
+	t_model = [0.0647599, 0.0741005, -0.0191471]
+	r_model = [axis = [3.34758e-07, -1, 3.14825e-07], angle = 0.207357, degree = 0.00361906]
+	trans_model = [translation = [0.0647599, 0.0741005, -0.0191471], rotation = [axis = [3.34758e-07, -1, 3.14825e-07], angle = 0.207357, degree = 0.00361906]]
+104 = 	name = LeftToeBase
+	id = 104
+	parent = 103
+	children = [105, ]
+	t_local = [-3.16134e-09, -0.0547, 0.0957001]
+	r_local = [axis = [1, 0, 0], angle = 0, degree = 0]
+	trans_local = [translation = [-3.16134e-09, -0.0547, 0.0957001], rotation = [axis = [1, 0, 0], angle = 0, degree = 0]]
+	t_model = [0.0450578, 0.0194004, 0.0745029]
+	r_model = [axis = [3.34758e-07, -1, 3.14825e-07], angle = 0.207357, degree = 0.00361906]
+	trans_model = [translation = [0.0450578, 0.0194004, 0.0745029], rotation = [axis = [3.34758e-07, -1, 3.14825e-07], angle = 0.207357, degree = 0.00361906]]
+105 = 	name = LeftToe_End
+	id = 105
+	parent = 104
+	children = []
+	t_local = [-5.32907e-17, 2.22045e-18, 0.0511]
+	r_local = [axis = [1, 0, 0], angle = 0, degree = 0]
+	trans_local = [translation = [-5.32907e-17, 2.22045e-18, 0.0511], rotation = [axis = [1, 0, 0], angle = 0, degree = 0]]
+	t_model = [0.0345376, 0.0194004, 0.124508]
+	r_model = [axis = [3.34758e-07, -1, 3.14825e-07], angle = 0.207357, degree = 0.00361906]
+	trans_model = [translation = [0.0345376, 0.0194004, 0.124508], rotation = [axis = [3.34758e-07, -1, 3.14825e-07], angle = 0.207357, degree = 0.00361906]]
+106 = 	name = RightUpLeg
+	id = 106
+	parent = 22
+	children = [107, ]
+	t_local = [-0.0566, -0.00999742, -0.0099401]
+	r_local = [axis = [-0.949141, -0.287973, -0.127327], angle = 0.191717, degree = 0.0033461]
+	trans_local = [translation = [-0.0566, -0.00999742, -0.0099401], rotation = [axis = [-0.949134, -0.287971, -0.127326], angle = 0.191719, degree = 0.00334612]]
+	t_model = [-0.0612857, 0.918383, -0.00179631]
+	r_model = [axis = [-0.916551, -0.313804, -0.247908], angle = 0.137508, degree = 0.00239996]
+	trans_model = [translation = [-0.0612857, 0.918383, -0.00179631], rotation = [axis = [-0.916551, -0.313804, -0.247908], angle = 0.137508, degree = 0.00239996]]
+107 = 	name = RightLeg
+	id = 107
+	parent = 106
+	children = [108, ]
+	t_local = [-7.63525e-08, -0.410099, -0.0175994]
+	r_local = [axis = [1.00001, 6.18255e-17, 6.16932e-17], angle = 0.119654, degree = 0.00208835]
+	trans_local = [translation = [-7.63525e-08, -0.410099, -0.0175994], rotation = [axis = [1.00002, 6.18266e-17, 6.16943e-17], angle = 0.119652, degree = 0.00208832]]
+	t_model = [-0.0756157, 0.50955, 0.0319821]
+	r_model = [axis = [-0.115836, -0.814878, -0.568069], angle = 0.0553221, degree = 0.000965553]
+	trans_model = [translation = [-0.0756157, 0.50955, 0.0319821], rotation = [axis = [-0.115836, -0.814878, -0.568069], angle = 0.0553221, degree = 0.000965553]]
+108 = 	name = RightFoot
+	id = 108
+	parent = 107
+	children = [109, ]
+	t_local = [-1.64255e-07, -0.4347, -0.0436001]
+	r_local = [axis = [0.0286555, 0.980022, 0.196805], angle = 0.161428, degree = 0.00281745]
+	trans_local = [translation = [-1.64255e-07, -0.4347, -0.0436001], rotation = [axis = [0.0286555, 0.980022, 0.196805], angle = 0.161428, degree = 0.00281745]]
+	t_model = [-0.087373, 0.0747629, -0.00909643]
+	r_model = [axis = [-2.68117e-07, 0.999991, 4.13777e-08], angle = 0.113132, degree = 0.00197453]
+	trans_model = [translation = [-0.087373, 0.0747629, -0.00909643], rotation = [axis = [-2.68117e-07, 0.999991, 4.13777e-08], angle = 0.113132, degree = 0.00197453]]
+109 = 	name = RightToeBase
+	id = 109
+	parent = 108
+	children = [110, ]
+	t_local = [4.14922e-09, -0.0547, 0.0957008]
+	r_local = [axis = [1, 0, 0], angle = 0, degree = 0]
+	trans_local = [translation = [4.14922e-09, -0.0547, 0.0957008], rotation = [axis = [1, 0, 0], angle = 0, degree = 0]]
+	t_model = [-0.0765694, 0.0200628, 0.0859926]
+	r_model = [axis = [-2.68117e-07, 0.999991, 4.13777e-08], angle = 0.113132, degree = 0.00197453]
+	trans_model = [translation = [-0.0765694, 0.0200628, 0.0859926], rotation = [axis = [-2.68117e-07, 0.999991, 4.13777e-08], angle = 0.113132, degree = 0.00197453]]
+110 = 	name = RightToe_End
+	id = 110
+	parent = 109
+	children = []
+	t_local = [0, 4.44089e-18, 0.0511]
+	r_local = [axis = [1, 0, 0], angle = 0, degree = 0]
+	trans_local = [translation = [0, 4.44089e-18, 0.0511], rotation = [axis = [1, 0, 0], angle = 0, degree = 0]]
+	t_model = [-0.0708007, 0.0200628, 0.136766]
+	r_model = [axis = [-2.68117e-07, 0.999991, 4.13777e-08], angle = 0.113132, degree = 0.00197453]
+	trans_model = [translation = [-0.0708007, 0.0200628, 0.136766], rotation = [axis = [-2.68117e-07, 0.999991, 4.13777e-08], angle = 0.113132, degree = 0.00197453]]
+111 = 	name = Skirt2_1
+	id = 111
+	parent = 22
+	children = [112, ]
+	t_local = [0.0559997, 0.0442254, 0.0737162]
+	r_local = [axis = [-0.0673963, -0.0736792, -0.995002], angle = 1.48678, degree = 0.0259491]
+	trans_local = [translation = [0.0559997, 0.0442254, 0.0737162], rotation = [axis = [-0.0673963, -0.0736792, -0.995002], angle = 1.48678, degree = 0.0259491]]
+	t_model = [0.0526727, 0.966808, 0.0835598]
+	r_model = [axis = [-0.0421825, -0.0394858, -0.998329], angle = 1.49221, degree = 0.026044]
+	trans_model = [translation = [0.0526727, 0.966808, 0.0835598], rotation = [axis = [-0.0421825, -0.0394858, -0.998329], angle = 1.49221, degree = 0.026044]]
+112 = 	name = Skirt2_2
+	id = 112
+	parent = 111
+	children = [113, ]
+	t_local = [0.0814036, -2.24029e-08, 1.13961e-09]
+	r_local = [axis = [1, 0, 0], angle = 0, degree = 0]
+	trans_local = [translation = [0.0814036, -2.24029e-08, 1.13961e-09], rotation = [axis = [1, 0, 0], angle = 0, degree = 0]]
+	t_model = [0.0591966, 0.885916, 0.0899231]
+	r_model = [axis = [-0.0421825, -0.0394858, -0.998329], angle = 1.49221, degree = 0.026044]
+	trans_model = [translation = [0.0591966, 0.885916, 0.0899231], rotation = [axis = [-0.0421825, -0.0394858, -0.998329], angle = 1.49221, degree = 0.026044]]
+113 = 	name = Skirt2_3
+	id = 113
+	parent = 112
+	children = [114, ]
+	t_local = [0.0816073, 3.90799e-16, -3.55271e-17]
+	r_local = [axis = [1, 0, 0], angle = 0, degree = 0]
+	trans_local = [translation = [0.0816073, 3.90799e-16, -3.55271e-17], rotation = [axis = [1, 0, 0], angle = 0, degree = 0]]
+	t_model = [0.0657369, 0.804822, 0.0963024]
+	r_model = [axis = [-0.0421825, -0.0394858, -0.998329], angle = 1.49221, degree = 0.026044]
+	trans_model = [translation = [0.0657369, 0.804822, 0.0963024], rotation = [axis = [-0.0421825, -0.0394858, -0.998329], angle = 1.49221, degree = 0.026044]]
+114 = 	name = Skirt2End
+	id = 114
+	parent = 113
+	children = []
+	t_local = [0.0819737, 6.54406e-08, -1.13961e-09]
+	r_local = [axis = [1, 0, 0], angle = 0, degree = 0]
+	trans_local = [translation = [0.0819737, 6.54406e-08, -1.13961e-09], rotation = [axis = [1, 0, 0], angle = 0, degree = 0]]
+	t_model = [0.0723066, 0.723364, 0.10271]
+	r_model = [axis = [-0.0421825, -0.0394858, -0.998329], angle = 1.49221, degree = 0.026044]
+	trans_model = [translation = [0.0723066, 0.723364, 0.10271], rotation = [axis = [-0.0421825, -0.0394858, -0.998329], angle = 1.49221, degree = 0.026044]]
+115 = 	name = Skirt1_1
+	id = 115
+	parent = 22
+	children = [116, ]
+	t_local = [0.1111, 0.0479054, 0.000216186]
+	r_local = [axis = [2.81772e-08, -6.59348e-08, -1], angle = 1.35263, degree = 0.0236079]
+	trans_local = [translation = [0.1111, 0.0479054, 0.000216186], rotation = [axis = [2.81772e-08, -6.59349e-08, -1], angle = 1.35263, degree = 0.0236078]]
+	t_model = [0.107048, 0.974136, 0.00979401]
+	r_model = [axis = [0.0296394, 0.0344923, -0.998965], angle = 1.36279, degree = 0.0237852]
+	trans_model = [translation = [0.107048, 0.974136, 0.00979401], rotation = [axis = [0.0296394, 0.0344923, -0.998965], angle = 1.36279, degree = 0.0237852]]
+116 = 	name = Skirt1_2
+	id = 116
+	parent = 115
+	children = [117, ]
+	t_local = [0.0814036, -2.24029e-08, 1.13961e-09]
+	r_local = [axis = [1, 0, 0], angle = 0, degree = 0]
+	trans_local = [translation = [0.0814036, -2.24029e-08, 1.13961e-09], rotation = [axis = [1, 0, 0], angle = 0, degree = 0]]
+	t_model = [0.123916, 0.894636, 0.00513422]
+	r_model = [axis = [0.0296394, 0.0344923, -0.998965], angle = 1.36279, degree = 0.0237852]
+	trans_model = [translation = [0.123916, 0.894636, 0.00513422], rotation = [axis = [0.0296394, 0.0344923, -0.998965], angle = 1.36279, degree = 0.0237852]]
+117 = 	name = Skirt1_3
+	id = 117
+	parent = 116
+	children = [118, ]
+	t_local = [0.0816073, 4.26326e-16, -2.66454e-17]
+	r_local = [axis = [1, 0, 0], angle = 0, degree = 0]
+	trans_local = [translation = [0.0816073, 4.26326e-16, -2.66454e-17], rotation = [axis = [1, 0, 0], angle = 0, degree = 0]]
+	t_model = [0.140825, 0.814936, 0.00046276]
+	r_model = [axis = [0.0296394, 0.0344923, -0.998965], angle = 1.36279, degree = 0.0237852]
+	trans_model = [translation = [0.140825, 0.814936, 0.00046276], rotation = [axis = [0.0296394, 0.0344923, -0.998965], angle = 1.36279, degree = 0.0237852]]
+118 = 	name = Skirt1End
+	id = 118
+	parent = 117
+	children = []
+	t_local = [0.0819737, 6.54406e-08, -1.13961e-09]
+	r_local = [axis = [1, 0, 0], angle = 0, degree = 0]
+	trans_local = [translation = [0.0819737, 6.54406e-08, -1.13961e-09], rotation = [axis = [1, 0, 0], angle = 0, degree = 0]]
+	t_model = [0.157811, 0.734879, -0.00422967]
+	r_model = [axis = [0.0296394, 0.0344923, -0.998965], angle = 1.36279, degree = 0.0237852]
+	trans_model = [translation = [0.157811, 0.734879, -0.00422967], rotation = [axis = [0.0296394, 0.0344923, -0.998965], angle = 1.36279, degree = 0.0237852]]
+119 = 	name = Skirt3_1
+	id = 119
+	parent = 22
+	children = [120, ]
+	t_local = [0.0559997, 0.0442254, -0.0734338]
+	r_local = [axis = [0.0938707, 0.102622, -0.990281], angle = 1.49152, degree = 0.0260319]
+	trans_local = [translation = [0.0559997, 0.0442254, -0.0734338], rotation = [axis = [0.0938708, 0.102622, -0.990281], angle = 1.49152, degree = 0.0260319]]
+	t_model = [0.0511637, 0.975099, -0.0633487]
+	r_model = [axis = [0.118538, 0.134547, -0.983792], angle = 1.50778, degree = 0.0263157]
+	trans_model = [translation = [0.0511637, 0.975099, -0.0633487], rotation = [axis = [0.118538, 0.134547, -0.983792], angle = 1.50778, degree = 0.0263157]]
+120 = 	name = Skirt3_2
+	id = 120
+	parent = 119
+	children = [121, ]
+	t_local = [0.0814036, -2.24029e-08, 1.13961e-09]
+	r_local = [axis = [1, 0, 0], angle = 0, degree = 0]
+	trans_local = [translation = [0.0814036, -2.24029e-08, 1.13961e-09], rotation = [axis = [1, 0, 0], angle = 0, degree = 0]]
+	t_model = [0.0573621, 0.89639, -0.0831747]
+	r_model = [axis = [0.118538, 0.134547, -0.983792], angle = 1.50778, degree = 0.0263157]
+	trans_model = [translation = [0.0573621, 0.89639, -0.0831747], rotation = [axis = [0.118538, 0.134547, -0.983792], angle = 1.50778, degree = 0.0263157]]
+121 = 	name = Skirt3_3
+	id = 121
+	parent = 120
+	children = [122, ]
+	t_local = [0.0816073, 4.26326e-16, 0]
+	r_local = [axis = [1, 0, 0], angle = 0, degree = 0]
+	trans_local = [translation = [0.0816073, 4.26326e-16, 0], rotation = [axis = [1, 0, 0], angle = 0, degree = 0]]
+	t_model = [0.063576, 0.817485, -0.10305]
+	r_model = [axis = [0.118538, 0.134547, -0.983792], angle = 1.50778, degree = 0.0263157]
+	trans_model = [translation = [0.063576, 0.817485, -0.10305], rotation = [axis = [0.118538, 0.134547, -0.983792], angle = 1.50778, degree = 0.0263157]]
+122 = 	name = Skirt3End
+	id = 122
+	parent = 121
+	children = []
+	t_local = [0.0819737, 6.54406e-08, -1.13961e-09]
+	r_local = [axis = [1, 0, 0], angle = 0, degree = 0]
+	trans_local = [translation = [0.0819737, 6.54406e-08, -1.13961e-09], rotation = [axis = [1, 0, 0], angle = 0, degree = 0]]
+	t_model = [0.0698178, 0.738225, -0.123015]
+	r_model = [axis = [0.118538, 0.134547, -0.983792], angle = 1.50778, degree = 0.0263157]
+	trans_model = [translation = [0.0698178, 0.738225, -0.123015], rotation = [axis = [0.118538, 0.134547, -0.983792], angle = 1.50778, degree = 0.0263157]]
+123 = 	name = Skirt5_1
+	id = 123
+	parent = 22
+	children = [124, ]
+	t_local = [-0.1111, 0.0479253, 0.000215587]
+	r_local = [axis = [0.779885, 0.625923, 6.82299e-16], angle = 3.14159, degree = 0.0548311]
+	trans_local = [translation = [-0.1111, 0.0479253, 0.000215587], rotation = [axis = [0.779885, 0.625923, 6.82299e-16], angle = 3.14159, degree = 0.0548311]]
+	t_model = [-0.11513, 0.976121, 0.0121875]
+	r_model = [axis = [0.782668, 0.622293, 0.0135286], angle = 3.1921, degree = 0.0557127]
+	trans_model = [translation = [-0.11513, 0.976121, 0.0121875], rotation = [axis = [0.782668, 0.622293, 0.0135286], angle = 3.1921, degree = 0.0557127]]
+124 = 	name = Skirt5_2
+	id = 124
+	parent = 123
+	children = [125, ]
+	t_local = [-0.0814036, -3.74713e-08, 0]
+	r_local = [axis = [1, 0, 0], angle = 0, degree = 0]
+	trans_local = [translation = [-0.0814036, -3.74713e-08, 0], rotation = [axis = [1, 0, 0], angle = 0, degree = 0]]
+	t_model = [-0.133497, 0.896932, 0.00790725]
+	r_model = [axis = [0.782668, 0.622293, 0.0135286], angle = 3.1921, degree = 0.0557127]
+	trans_model = [translation = [-0.133497, 0.896932, 0.00790725], rotation = [axis = [0.782668, 0.622293, 0.0135286], angle = 3.1921, degree = 0.0557127]]
+125 = 	name = Skirt5_3
+	id = 125
+	parent = 124
+	children = [126, ]
+	t_local = [-0.0816074, 7.69875e-08, 1.77636e-17]
+	r_local = [axis = [1, 0, 0], angle = 0, degree = 0]
+	trans_local = [translation = [-0.0816074, 7.69875e-08, 1.77636e-17], rotation = [axis = [1, 0, 0], angle = 0, degree = 0]]
+	t_model = [-0.15191, 0.817545, 0.00361623]
+	r_model = [axis = [0.782668, 0.622293, 0.0135286], angle = 3.1921, degree = 0.0557127]
+	trans_model = [translation = [-0.15191, 0.817545, 0.00361623], rotation = [axis = [0.782668, 0.622293, 0.0135286], angle = 3.1921, degree = 0.0557127]]
+126 = 	name = Skirt5End1
+	id = 126
+	parent = 125
+	children = []
+	t_local = [-0.081973, 2.18545e-07, 3.55271e-17]
+	r_local = [axis = [1, 0, 0], angle = 0, degree = 0]
+	trans_local = [translation = [-0.081973, 2.18545e-07, 3.55271e-17], rotation = [axis = [1, 0, 0], angle = 0, degree = 0]]
+	t_model = [-0.170405, 0.737802, -0.000694021]
+	r_model = [axis = [0.782668, 0.622293, 0.0135285], angle = 3.1921, degree = 0.0557127]
+	trans_model = [translation = [-0.170405, 0.737802, -0.000694021], rotation = [axis = [0.782668, 0.622293, 0.0135285], angle = 3.1921, degree = 0.0557127]]
+127 = 	name = Skirt6_1
+	id = 127
+	parent = 22
+	children = [128, ]
+	t_local = [-0.0559998, 0.0442453, -0.0734344]
+	r_local = [axis = [0.736766, 0.672695, 0.0682487], angle = 3.27432, degree = 0.0571477]
+	trans_local = [translation = [-0.0559998, 0.0442453, -0.0734344], rotation = [axis = [0.736766, 0.672695, 0.0682487], angle = 3.27432, degree = 0.0571477]]
+	t_model = [-0.0608247, 0.976109, -0.062142]
+	r_model = [axis = [0.739409, 0.668028, 0.0837493], angle = 3.32225, degree = 0.0579842]
+	trans_model = [translation = [-0.0608247, 0.976109, -0.062142], rotation = [axis = [0.739409, 0.668028, 0.0837493], angle = 3.32225, degree = 0.0579842]]
+128 = 	name = Skirt6_2
+	id = 128
+	parent = 127
+	children = [129, ]
+	t_local = [-0.0814034, -5.38598e-08, 7.63305e-08]
+	r_local = [axis = [1, 0, 0], angle = 0, degree = 0]
+	trans_local = [translation = [-0.0814034, -5.38598e-08, 7.63305e-08], rotation = [axis = [1, 0, 0], angle = 0, degree = 0]]
+	t_model = [-0.0690325, 0.897571, -0.0819125]
+	r_model = [axis = [0.739409, 0.668028, 0.0837493], angle = 3.32225, degree = 0.0579842]
+	trans_model = [translation = [-0.0690325, 0.897571, -0.0819125], rotation = [axis = [0.739409, 0.668028, 0.0837493], angle = 3.32225, degree = 0.0579842]]
+129 = 	name = Skirt6_3
+	id = 129
+	parent = 128
+	children = [130, ]
+	t_local = [-0.0816079, 8.38881e-08, -2.03424e-07]
+	r_local = [axis = [1, 0, 0], angle = 0, degree = 0]
+	trans_local = [translation = [-0.0816079, 8.38881e-08, -2.03424e-07], rotation = [axis = [1, 0, 0], angle = 0, degree = 0]]
+	t_model = [-0.0772607, 0.818835, -0.101732]
+	r_model = [axis = [0.739409, 0.668028, 0.0837493], angle = 3.32225, degree = 0.0579842]
+	trans_model = [translation = [-0.0772607, 0.818835, -0.101732], rotation = [axis = [0.739409, 0.668028, 0.0837493], angle = 3.32225, degree = 0.0579842]]
+130 = 	name = Skirt6End
+	id = 130
+	parent = 129
+	children = []
+	t_local = [-0.0819731, -7.63343e-08, 1.3316e-07]
+	r_local = [axis = [1, 0, 0], angle = 0, degree = 0]
+	trans_local = [translation = [-0.0819731, -7.63343e-08, 1.3316e-07], rotation = [axis = [1, 0, 0], angle = 0, degree = 0]]
+	t_model = [-0.0855259, 0.739747, -0.121641]
+	r_model = [axis = [0.739409, 0.668028, 0.0837492], angle = 3.32225, degree = 0.0579842]
+	trans_model = [translation = [-0.0855259, 0.739747, -0.121641], rotation = [axis = [0.739409, 0.668028, 0.0837492], angle = 3.32225, degree = 0.0579842]]
+131 = 	name = Skirt4_1
+	id = 131
+	parent = 22
+	children = [132, ]
+	t_local = [-0.0559998, 0.0442453, 0.0737156]
+	r_local = [axis = [0.736756, 0.674382, -0.0489751], angle = 3.04984, degree = 0.0532298]
+	trans_local = [translation = [-0.0559998, 0.0442453, 0.0737156], rotation = [axis = [0.736756, 0.674382, -0.0489751], angle = 3.04984, degree = 0.0532298]]
+	t_model = [-0.0593158, 0.967819, 0.0847665]
+	r_model = [axis = [0.739954, 0.671796, -0.0340207], angle = 3.09889, degree = 0.0540859]
+	trans_model = [translation = [-0.0593158, 0.967819, 0.0847665], rotation = [axis = [0.739954, 0.671796, -0.0340207], angle = 3.09889, degree = 0.0540859]]
+132 = 	name = Skirt4_2
+	id = 132
+	parent = 131
+	children = [133, ]
+	t_local = [-0.0814034, -3.27168e-08, -1.57579e-07]
+	r_local = [axis = [1, 0, 0], angle = 0, degree = 0]
+	trans_local = [translation = [-0.0814034, -3.27168e-08, -1.57579e-07], rotation = [axis = [1, 0, 0], angle = 0, degree = 0]]
+	t_model = [-0.067088, 0.887043, 0.0911977]
+	r_model = [axis = [0.739954, 0.671796, -0.0340207], angle = 3.09889, degree = 0.0540859]
+	trans_model = [translation = [-0.067088, 0.887043, 0.0911977], rotation = [axis = [0.739954, 0.671796, -0.0340207], angle = 3.09889, degree = 0.0540859]]
+133 = 	name = Skirt4_3
+	id = 133
+	parent = 132
+	children = [134, ]
+	t_local = [-0.0816079, 8.03428e-08, 2.17893e-07]
+	r_local = [axis = [1, 0, 0], angle = 0, degree = 0]
+	trans_local = [translation = [-0.0816079, 8.03428e-08, 2.17893e-07], rotation = [axis = [1, 0, 0], angle = 0, degree = 0]]
+	t_model = [-0.0748796, 0.806064, 0.0976447]
+	r_model = [axis = [0.739954, 0.671796, -0.0340207], angle = 3.09889, degree = 0.0540859]
+	trans_model = [translation = [-0.0748796, 0.806064, 0.0976447], rotation = [axis = [0.739954, 0.671796, -0.0340207], angle = 3.09889, degree = 0.0540859]]
+134 = 	name = Skirt4End
+	id = 134
+	parent = 133
+	children = []
+	t_local = [-0.0819737, -1.04015e-07, 1.52086e-07]
+	r_local = [axis = [1, 0, 0], angle = 0, degree = 0]
+	trans_local = [translation = [-0.0819737, -1.04015e-07, 1.52086e-07], rotation = [axis = [1, 0, 0], angle = 0, degree = 0]]
+	t_model = [-0.0827063, 0.724722, 0.104121]
+	r_model = [axis = [0.739954, 0.671796, -0.0340208], angle = 3.09889, degree = 0.0540859]
+	trans_model = [translation = [-0.0827063, 0.724722, 0.104121], rotation = [axis = [0.739954, 0.671796, -0.0340208], angle = 3.09889, degree = 0.0540859]]
+135 = 	name = group
+	id = 135
+	parent = 0
+	children = [136, ]
+	t_local = [0, 0, 0]
+	r_local = [axis = [1, 0, 0], angle = 0, degree = 0]
+	trans_local = [translation = [0, 0, 0], rotation = [axis = [1, 0, 0], angle = 0, degree = 0]]
+	t_model = [0, 0, 0]
+	r_model = [axis = [1, 0, 0], angle = 0, degree = 0]
+	trans_model = [translation = [0, 0, 0], rotation = [axis = [1, 0, 0], angle = 0, degree = 0]]
+136 = 	name = pasted__body
+	id = 136
+	parent = 135
+	children = []
+	t_local = [0, 0, 0]
+	r_local = [axis = [1, 0, 0], angle = 0, degree = 0]
+	trans_local = [translation = [0, 0, 0], rotation = [axis = [1, 0, 0], angle = 0, degree = 0]]
+	t_model = [0, 0, 0]
+	r_model = [axis = [1, 0, 0], angle = 0, degree = 0]
+	trans_model = [translation = [0, 0, 0], rotation = [axis = [1, 0, 0], angle = 0, degree = 0]]
+Program ended with exit code: 9
