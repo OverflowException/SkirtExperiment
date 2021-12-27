@@ -18,7 +18,8 @@ INCLUDE_DIRECTORIES(
 )
     
 SET(SkirtExperiment_SRCS
-    skirt_experiment.cpp    
+    ./skirt_experiment.cpp
+    ./math_util.cpp
         ${BULLET_PHYSICS_SOURCE_DIR}/build3/bullet.rc
 	../StandaloneMain/main_opengl_single_example.cpp
         ../ExampleBrowser/OpenGLGuiHelper.cpp
