@@ -1,5 +1,5 @@
 #include <iostream>
-#include <queue>
+#include <map>
 
 #include "skirt_experiment.h"
 #include "data.h"
@@ -10,23 +10,40 @@
 
 #include "../CommonInterfaces/CommonRigidBodyBase.h"
 
-#include "math_util.h"
-#include "print_helper.h"
+#include "glm/gtc/matrix_transform.hpp"
+
+#include "timer.hpp"
+#include "glm2bt.hpp"
+#include "dynamic_bone.h"
 
 const std::string base_filename = "./data/hip";
-const float       base_radius = 0.5;
+const float       base_radius = 0.3;
 
 const  int                     strand_count = 6;
 const std::string              strand_prefix = "./data/skirt";
 const std::vector<std::string> strand_suffixes = {"1", "2", "3", "4", "5", "6"};
-const float                    bone_mass = 1;
-const float                    bone_radius = 0.1;
+const float                    bone_radius = 0.07;
+const float                    joint_radius = 0.1;
 const float                    bone_length_ratio = 0.8;
 
-const btVector3                p_handle_pos = btVector3(-1.0, 1.0, -2.5);
-const btVector3                r_handle_pos = btVector3(-2.0, 1.0, 2.0);
+const btVector3                x_handle_pos = btVector3(-1.0, 1.0, -2.5);
+const btVector3                y_handle_pos = btVector3(0.0, 1.0, -2.5);
+const btVector3                z_handle_pos = btVector3(1.0, 1.0, -2.5);
 
-const float                    scaling = 10;
+const btVector3                yaw_handle_pos = btVector3(-2.0, 0.5, 2.0);
+const btVector3                pitch_handle_pos = btVector3(-2.0, 0.5, -1.5);
+const btVector3                roll_handle_pos = btVector3(-3.0, 0.5, 0);
+
+const std::vector<glm::mat4> local_transforms = {
+    glm::translate(glm::mat4(1.0), glm::vec3(1.0f, 1.0f, 0.0f)),
+    glm::translate(glm::mat4(1.0), glm::vec3(-1.0f, 1.0f, 0.0f)),
+    glm::translate(glm::mat4(1.0), glm::vec3(-0.5f, -0.5f, 0.0f)),
+    glm::translate(glm::mat4(1.0), glm::vec3(-0.5f, -1.0f, 0.0f)),
+    glm::translate(glm::mat4(1.0), glm::vec3(0.0f, -1.0f, 0.0f))
+};
+
+const int root_id = 1;
+
 
 struct SkirtExperiment : public CommonRigidBodyBase
 {
@@ -36,8 +53,20 @@ struct SkirtExperiment : public CommonRigidBodyBase
     // See CommonRigidBodyBase::exitPhysics()
     btRigidBody*  m_base;
     btTransform   m_base_trans;
-    btRigidBody*  m_p_handle;
-    btRigidBody*  m_r_handle;
+    btRigidBody*  m_x_handle;
+    btRigidBody*  m_y_handle;
+    btRigidBody*  m_z_handle;
+    
+    btRigidBody*  m_yaw_handle;
+    btRigidBody*  m_pitch_handle;
+    btRigidBody*  m_roll_handle;
+    
+    Skeleton skel;
+    std::map<size_t, btRigidBody*> j2rb_map;
+    std::map<std::pair<btRigidBody*, btRigidBody*>, btRigidBody*> s2c_map;
+    
+    Timer timer;
+    DynamicBone db;
     
 	SkirtExperiment(struct GUIHelperInterface* helper) : CommonRigidBodyBase(helper) {}
     
@@ -53,21 +82,21 @@ struct SkirtExperiment : public CommonRigidBodyBase
 	}
 
     // creation functions & add functions here
-    void create_ground();
-    
-    void create_test();
-    
     void create_dynamic_bones();
-    
-    bool create_strand(int i, btRigidBody* base);
     
     void create_position_handle();
     
     void create_rotation_handle();
     
+    void create_cylinder_between_spheres();
+    
+    void update_cylinder_between_spheres();
+    
     btPoint2PointConstraint* create_p2p_constraint(btRigidBody& rb_a,
                                                    btRigidBody& rb_b,
                                                    btVector3& pivot);
+    
+    btTypedConstraint* create_line_fix_constraint(btRigidBody& body, const btVector3& normal);
     
     btTypedConstraint* create_plane_fix_constraint(btRigidBody& body, const btVector3& normal);
     
@@ -76,14 +105,46 @@ struct SkirtExperiment : public CommonRigidBodyBase
 
 // pre-tick callback for kinematic bodies
 void kinematicPreTickCallback(btDynamicsWorld* world, btScalar delta_time) {
+    // base body manipulation
     SkirtExperiment* exp = reinterpret_cast<SkirtExperiment*>(world->getWorldUserInfo());
 
-    btVector3 translation = exp->m_p_handle->getWorldTransform().getOrigin() - p_handle_pos;
-    btQuaternion rotation = exp->m_r_handle->getWorldTransform().getRotation();
+    btVector3 x = exp->m_x_handle->getWorldTransform().getOrigin() - x_handle_pos;
+    btVector3 y = exp->m_y_handle->getWorldTransform().getOrigin() - y_handle_pos;
+    btVector3 z = exp->m_z_handle->getWorldTransform().getOrigin() - z_handle_pos;
     
-    exp->m_base->getWorldTransform().setRotation(rotation);
-    exp->m_base->getWorldTransform().getOrigin() = exp->m_base_trans.getOrigin() + translation;
+    btQuaternion yaw = exp->m_yaw_handle->getWorldTransform().getRotation();
+    btQuaternion pitch = exp->m_pitch_handle->getWorldTransform().getRotation();
+    btQuaternion roll = exp->m_roll_handle->getWorldTransform().getRotation();
     
+    exp->m_base->getWorldTransform().setRotation(yaw * pitch * roll);
+    exp->m_base->getWorldTransform().getOrigin() = exp->m_base_trans.getOrigin() + x + y + z;
+    
+    // sync manual control to object
+    *exp->skel[0].world_transform = bt2glm_transform(exp->m_base->getWorldTransform().getOrigin(),
+                                                     exp->m_base->getWorldTransform().getRotation());
+    
+    // simulate animation update
+    for (size_t i = 1; i < exp->skel.size(); ++i) {
+        Joint& j = exp->skel[i];
+        
+        glm::mat4 parent_transfom = *exp->skel[j.parent].world_transform;
+        *j.world_transform = glm::mat4(parent_transfom * j.local_transform);
+    }
+    
+    // dynamic bone step
+    float dt = exp->timer.interval();
+    exp->db.update(dt);
+
+    //sync back to bt rigid body
+    for (size_t i = root_id; i < exp->skel.size(); ++i) {
+        btTransform bt_trans = glm2bt_transform(*exp->skel[i].world_transform);
+        exp->j2rb_map[i]->setWorldTransform(bt_trans);
+    }
+    
+    // sync bone cylinder
+    exp->update_cylinder_between_spheres();
+    
+    // sync to skeleton
 ////    btTransform trans;
 ////    btVector3 linear_vel(0, 0, 0);
 ////    btVector3 ang_vel(0, 3, 0);
@@ -91,8 +152,38 @@ void kinematicPreTickCallback(btDynamicsWorld* world, btScalar delta_time) {
 ////    head->getMotionState()->setWorldTransform(trans);
 }
 
+
+void SkirtExperiment::create_cylinder_between_spheres() {
+    for (size_t i = 1; i < skel.size(); ++i) {
+        size_t j = skel[i].parent;
+        glm::vec3 child_world_pos = (*skel[i].world_transform)[3];
+        glm::vec3 parent_world_pos = (*skel[j].world_transform)[3];
+        float half_length = glm::distance(child_world_pos, parent_world_pos) * 0.5;
+        
+        btCylinderShapeX* cylinder_shape = new btCylinderShapeX(btVector3(half_length * bone_length_ratio, bone_radius, bone_radius));
+        m_collisionShapes.push_back(cylinder_shape);
+        btRigidBody* bone = createRigidBody(0.0f, btTransform(), cylinder_shape);
+        
+        s2c_map[std::make_pair(j2rb_map[j], j2rb_map[i])] = bone;
+    }
+}
+
+void SkirtExperiment::update_cylinder_between_spheres() {
+    for (auto& ele : s2c_map) {
+        btRigidBody* s0 = ele.first.first;  // parent joint
+        btRigidBody* s1 = ele.first.second; // child joint
+        btRigidBody* b = ele.second;        // bone
+
+        btVector3 bone_vec = s1->getWorldTransform().getOrigin() - s0->getWorldTransform().getOrigin();
+        btQuaternion bone_rot = bt_rot_between(btVector3(1.0, 0.0, 0.0), bone_vec);
+        btVector3 bone_pos = (s0->getWorldTransform().getOrigin() + s1->getWorldTransform().getOrigin()) * 0.5;
+        
+        b->setWorldTransform(btTransform(bone_rot, bone_pos));
+    }
+}
+
 void SkirtExperiment::create_rotation_handle() {
-    btCylinderShapeX* cylinder_shape = new btCylinderShapeX(btVector3(0.4, 0.1, 0.0));
+    btCylinderShapeX* cylinder_shape = new btCylinderShapeX(btVector3(0.4, 0.1, 0.1));
     // btSphereShape* cylinder_shape = new btSphereShape(0.2);
     m_collisionShapes.push_back(cylinder_shape);
     
@@ -100,184 +191,37 @@ void SkirtExperiment::create_rotation_handle() {
     m_collisionShapes.push_back(comp_shape);
     
     btVector3 x_axis(1.0, 0.0, 0.0);
-    btTransform local_trans(MathUtil::rot_between(x_axis, btVector3(1.0, 0.0, 0.0)));
+    btTransform local_trans(bt_rot_between(x_axis, btVector3(1.0, 0.0, 0.0)));
     comp_shape->addChildShape(local_trans, cylinder_shape);
     
-    local_trans = btTransform(MathUtil::rot_between(x_axis, btVector3(0.0, 1.0, 0.0)));
+    local_trans = btTransform(bt_rot_between(x_axis, btVector3(0.0, 1.0, 0.0)));
     comp_shape->addChildShape(local_trans, cylinder_shape);
 
-    local_trans = btTransform(MathUtil::rot_between(x_axis, btVector3(0.0, 0.0, 1.0)));
+    local_trans = btTransform(bt_rot_between(x_axis, btVector3(0.0, 0.0, 1.0)));
     comp_shape->addChildShape(local_trans, cylinder_shape);
     
-    m_r_handle = createRigidBody(1.0, btTransform(btQuaternion(0.0, 0.0, 0.0, 1.0), r_handle_pos), comp_shape);
-    m_dynamicsWorld->addConstraint(create_spin_only_constraint(*m_r_handle, btVector3(0.0, 1.0, 0.0)));
+    m_yaw_handle = createRigidBody(1.0, btTransform(btQuaternion(0.0, 0.0, 0.0, 1.0), yaw_handle_pos), comp_shape);
+    m_dynamicsWorld->addConstraint(create_spin_only_constraint(*m_yaw_handle, btVector3(0.0, 1.0, 0.0)));
+    
+    m_pitch_handle = createRigidBody(1.0, btTransform(btQuaternion(0.0, 0.0, 0.0, 1.0), pitch_handle_pos), comp_shape);
+    m_dynamicsWorld->addConstraint(create_spin_only_constraint(*m_pitch_handle, btVector3(0.0, 0.0, 1.0)));
+    
+    m_roll_handle = createRigidBody(1.0, btTransform(btQuaternion(0.0, 0.0, 0.0, 1.0), roll_handle_pos), comp_shape);
+    m_dynamicsWorld->addConstraint(create_spin_only_constraint(*m_roll_handle, btVector3(1.0, 0.0, 0.0)));
 }
 
 void SkirtExperiment::create_position_handle() {
     btBoxShape* box_shape = new btBoxShape(btVector3(0.1, 0.1, 0.1));
     m_collisionShapes.push_back(box_shape);
-    m_p_handle = createRigidBody(1.0, btTransform(btQuaternion(0.0, 0.0, 0.0, 1.0), p_handle_pos), box_shape);
-    m_dynamicsWorld->addConstraint(create_plane_fix_constraint(*m_p_handle, btVector3(0.0, 1.0, 0.0)));
-}
-
-void SkirtExperiment::create_ground() {
-    btBoxShape* ground_shape = createBoxShape(btVector3(50., 50., 50.));
-    m_collisionShapes.push_back(ground_shape);
     
-    btTransform ground_transform;
-    ground_transform.setIdentity();
-    ground_transform.setOrigin(btVector3(0, -50, 0));
+    m_x_handle = createRigidBody(1.0, btTransform(btQuaternion(0.0, 0.0, 0.0, 1.0), x_handle_pos), box_shape);
+    m_dynamicsWorld->addConstraint(create_line_fix_constraint(*m_x_handle, btVector3(1.0, 0.0, 0.0)));
     
-    btScalar ground_mass(0.);
-    createRigidBody(ground_mass, ground_transform, ground_shape, btVector4(0, 0, 1, 1));
-}
-
-bool SkirtExperiment::create_strand(int i, btRigidBody* base) {
-    std::vector<btTransform> joint_trans;
-    if (!get_transforms_from_file(strand_prefix + strand_suffixes[i], joint_trans)) {
-        return false;
-    }
-    assert(!joint_trans.empty());
+    m_y_handle = createRigidBody(1.0, btTransform(btQuaternion(0.0, 0.0, 0.0, 1.0), y_handle_pos), box_shape);
+    m_dynamicsWorld->addConstraint(create_line_fix_constraint(*m_y_handle, btVector3(0.0, 1.0, 0.0)));
     
-    // scale up joints
-    for (auto& trans : joint_trans) {
-        btVector3 base_translate = base->getWorldTransform().getOrigin();
-        btVector3 joint_translate = trans.getOrigin();
-        trans.setOrigin(MathUtil::scale_up(scaling, base_translate, joint_translate));
-    }
-    
-    joint_trans.insert(joint_trans.begin(), base->getWorldTransform());
-    
-    // curl this strand up a bit
-    for (int i = 1; i < joint_trans.size() - 1; ++i) {
-        btVector3 bone_vec0 = joint_trans[i - 1].getOrigin() - joint_trans[i].getOrigin();
-        btVector3 bone_vec1 = joint_trans[i + 1].getOrigin() - joint_trans[i].getOrigin();
-        std::cout << bone_vec1 << std::endl;
-        MathUtil::rot_towards(bone_vec0, bone_vec1, SIMD_PI * (1.0 / 12.0));
-        std::cout << bone_vec1 << std::endl;
-
-        joint_trans[i + 1].getOrigin() = joint_trans[i].getOrigin() + bone_vec1;
-    }
-    
-    btVector3 z_axis = btVector3(0.0, 0.0, 1.0);
-    std::vector<btRigidBody*> strand;
-    
-    // child bones
-    for (int i = 1; i < joint_trans.size(); ++i) {
-        btVector3 bone_vec = joint_trans[i].getOrigin() - joint_trans[i - 1].getOrigin();
-        btVector3 bone_mid = (joint_trans[i].getOrigin() + joint_trans[i - 1].getOrigin()) * 0.5;
-        btTransform bone_trans(MathUtil::rot_between(z_axis, bone_vec), bone_mid);
-        btCylinderShapeZ* bone_shape = new btCylinderShapeZ(btVector3(bone_radius, 0.0, bone_vec.length() * bone_length_ratio / 2));
-        m_collisionShapes.push_back(bone_shape);
-        
-        btRigidBody* bone = createRigidBody(bone_mass, bone_trans, bone_shape);
-        bone->setSleepingThresholds(0.1, 0.1);
-        bone->setActivationState(DISABLE_DEACTIVATION);
-        // bone->setDamping(1.0 / i, 0.0);
-        strand.push_back(bone);
-    }
-    assert(!strand.empty());
-    strand.insert(strand.begin(), base);
-    
-    // create constraints
-    for (int i = 1; i < strand.size(); ++i) {
-        btRigidBody* bone0 = strand[i - 1];
-        btRigidBody* bone1 = strand[i];
-        btVector3 joint0 = joint_trans[i - 1].getOrigin();
-        btVector3 joint1 = joint_trans[i].getOrigin();
-
-        btTransform pivot_frame;
-        pivot_frame.setIdentity();
-        pivot_frame.setRotation(MathUtil::rot_between(z_axis, joint1 - joint0));
-        pivot_frame.setOrigin(joint0);
-
-        btTransform frame0 = bone0->getWorldTransform().inverse() * pivot_frame;
-        btTransform frame1 = bone1->getWorldTransform().inverse() * pivot_frame;
-
-        auto constraint = new btGeneric6DofSpring2Constraint(*bone0, *bone1, frame0, frame1);
-        constraint->setLinearLowerLimit(btVector3(0.0, 0.0, 0.0));
-        constraint->setLinearUpperLimit(btVector3(0.0, 0.0, 0.0));
-
-        constraint->setAngularLowerLimit(btVector3(-1.0, -1.0, 0.0));
-        constraint->setAngularUpperLimit(btVector3(1.0, 1.0, 0.0));
-        constraint->enableSpring(3, true);
-        constraint->setStiffness(3, 100);
-        constraint->setDamping(3, 10);
-        constraint->enableSpring(4, true);
-        constraint->setStiffness(4, 100);
-        constraint->setDamping(4, 10);
-
-        m_dynamicsWorld->addConstraint(constraint, true);
-    }
-    
-    return true;
-}
-
-void SkirtExperiment::create_test() {
-    const float angle  = SIMD_PI * (2.0 / 3.0);
-    const float length = 1.5;
-    const float radius = 0.2;
-    
-    std::vector<btVector3> joints;
-    joints.emplace_back(0.0, 0.0, length);
-    joints.emplace_back(0.0, 0.0, 0.0);
-    joints.emplace_back(0.0, length * sin(angle), length * cos(angle));
-    
-    btCylinderShapeZ* shape = new btCylinderShapeZ(btVector3(radius, 0.0, length / 2));
-    m_collisionShapes.push_back(shape);
-    
-    btVector3 z_axis(0.0, 0.0, 1.0);
-    std::vector<btRigidBody*> bones;
-    std::vector<btQuaternion> rots;
-    // bones
-    for (int i = 1; i < joints.size(); ++i) {
-        btVector3& joint0 = joints[i - 1];
-        btVector3& joint1 = joints[i];
-        btVector3 bone_vec = joint1 - joint0;
-        btQuaternion rot_z2bone = MathUtil::rot_between(z_axis, bone_vec);
-        btTransform bone_trans(rot_z2bone, (joint0 + joint1) / 2);
-        
-        rots.push_back(rot_z2bone);
-        if (i == 1) {
-            bones.push_back(createRigidBody(0.0, bone_trans, shape));
-        } else {
-            bones.push_back(createRigidBody(1.0, bone_trans, shape));
-        }
-    }
-    
-    // Fix the first bone
-    // m_dynamicsWorld->addConstraint(create_plane_fix_constraint(*bones[0], btVector3(0.0, 1.0, 0.0)));
-    
-    // joints
-    for (int i = 1; i < joints.size() - 1; ++i) {
-        btRigidBody* bone0 = bones[i - 1];
-        btRigidBody* bone1 = bones[i];
-        
-        btVector3& joint = joints[i];
-        btVector3 bone1_vec = joint - bone1->getWorldTransform().getOrigin();
-        // pivot world frame
-        btTransform pivot_frame(MathUtil::rot_between(z_axis, bone1_vec), joint);
-        // local frames
-        btTransform bone0_frame = bone0->getWorldTransform().inverse() * pivot_frame;
-        btTransform bone1_frame = bone1->getWorldTransform().inverse() * pivot_frame;
-        auto constraint = new btGeneric6DofSpring2Constraint(*bone0, *bone1, bone0_frame, bone1_frame);
-        
-        constraint->setLinearLowerLimit(btVector3(0.0, 0.0, 0.0));
-        constraint->setLinearUpperLimit(btVector3(0.0, 0.0, 0.0));
-        
-        constraint->setAngularLowerLimit(btVector3(1.0, 1.0, 0.0));
-        constraint->setAngularUpperLimit(btVector3(-1.0, -1.0, 0.0));
-        constraint->enableSpring(3, true);
-        constraint->setStiffness(3, 50);
-        constraint->setDamping(3, 10);
-        constraint->enableSpring(4, true);
-        constraint->setStiffness(4, 50);
-        constraint->setDamping(4, 10);
-        // constraint->setDbgDrawSize(5.0f);
-        
-        m_dynamicsWorld->addConstraint(constraint, true);
-        
-    }
+    m_z_handle = createRigidBody(1.0, btTransform(btQuaternion(0.0, 0.0, 0.0, 1.0), z_handle_pos), box_shape);
+    m_dynamicsWorld->addConstraint(create_line_fix_constraint(*m_z_handle, btVector3(0.0, 0.0, 1.0)));
 }
 
 void SkirtExperiment::create_dynamic_bones() {
@@ -286,17 +230,50 @@ void SkirtExperiment::create_dynamic_bones() {
         std::cout << "cannot parse base file" << std::endl;
         return;
     }
+    
+    // Create skeleton hierarchy
+    skel.resize(local_transforms.size());
+    for (size_t i = 0; i < skel.size(); ++i) {
+        Joint& j = skel[i];
+        j.parent = i - 1;
+        if (i != skel.size() - 1) {
+            // Not the last
+            j.children.push_back(i + 1);
+        }
+        j.local_transform = local_transforms[i];
 
-    btSphereShape* sphere_shape = new btSphereShape(base_radius);
-    m_collisionShapes.push_back(sphere_shape);
-    m_base_trans = base_trans[0];
-    m_base = createRigidBody(0.0, m_base_trans, sphere_shape);
-    m_dynamicsWorld->addConstraint(create_spin_only_constraint(*m_base, btVector3(0.0, 1.0, 0.0)));
-
-//    for (int i = 0; i < strand_count; ++i) {
-//        create_strand(i, m_base);
-//    }
-    create_strand(5, m_base);
+        glm::mat4 parent_transfom = glm::mat4(1.0f);
+        if (i != 0){
+            // Not the first
+            parent_transfom = *skel[j.parent].world_transform;
+        }
+        j.world_transform.reset(new glm::mat4(parent_transfom * local_transforms[i]));
+        
+        // create bt body
+        float radius = i == 0 ? base_radius : joint_radius;
+        btSphereShape* sphere_shape = new btSphereShape(radius);
+        m_collisionShapes.push_back(sphere_shape);
+        btTransform j_trans = glm2bt_transform(*j.world_transform);
+        btRigidBody* rb = createRigidBody(0.0, j_trans, sphere_shape);
+        j2rb_map[i] = rb;
+    }
+    
+    create_cylinder_between_spheres();
+    update_cylinder_between_spheres();
+    
+    m_base = j2rb_map[0];
+    m_base_trans = m_base->getWorldTransform();
+    
+    // init dynamic bones
+    DynamicBone::Configs db_cfg;
+    db_cfg.object_id = 0;
+    db_cfg.root_id = root_id;
+    db_cfg.update_rate = 60.0f;
+    db_cfg.inertia = 0.1f;
+    db_cfg.elasticity = 0.1f;
+    db.init(db_cfg, skel);
+    
+    timer.start();
     
     create_position_handle();
     create_rotation_handle();
@@ -311,12 +288,53 @@ btPoint2PointConstraint* SkirtExperiment::create_p2p_constraint(btRigidBody& rb_
     return new btPoint2PointConstraint(rb_a, rb_b, pivot_a, pivot_b);
 }
 
+btTypedConstraint* SkirtExperiment::create_line_fix_constraint(btRigidBody& body, const btVector3& dir) {
+    // rotation between x-axis and plane normal
+    btVector3 x_axis = btVector3(1.0, 0.0, 0.0);
+    btVector3 x2n_axis = x_axis.cross(dir);
+    btScalar x2n_angle = x_axis.angle(dir);
+    
+    if (x2n_angle == btScalar(0.0) || x2n_axis.length() == btScalar(0.0)) {
+        x2n_axis = x_axis;
+        x2n_angle = btScalar(0.0);
+    }
+    
+    btQuaternion x2n(x2n_axis, x2n_angle);
+    
+    // world transform of pivot
+    btTransform pivot_trans_world = btTransform(x2n, body.getWorldTransform().getOrigin());
+    // b's local transform of pivot
+    btTransform pivot_trans_b = body.getCenterOfMassTransform().inverse() * pivot_trans_world;
+    btGeneric6DofSpring2Constraint* constraint = new btGeneric6DofSpring2Constraint(body, pivot_trans_b);
+    
+    // lock all directions other than dir, which is x in joint coordinate
+    constraint->setLinearLowerLimit(btVector3(1.0, 0.0, 0.0));
+    constraint->setLinearUpperLimit(btVector3(-1.0, 0.0, 0.0));
+    constraint->enableSpring(0, true);
+    constraint->setStiffness(0, 10);
+    constraint->setDamping(0, 5);
+    
+    constraint->setAngularLowerLimit(btVector3(0.0, 0.0, 0.0));
+    constraint->setAngularUpperLimit(btVector3(0.0, 0.0, 0.0));
+    
+    return constraint;
+}
+
 btTypedConstraint* SkirtExperiment::create_plane_fix_constraint(btRigidBody& body, const btVector3& normal) {
     // rotation between x-axis and plane normal
     btVector3 x_axis = btVector3(1.0, 0.0, 0.0);
-    btQuaternion x_rot2_n = btQuaternion(x_axis.cross(normal), x_axis.angle(normal));
+    btVector3 x2n_axis = x_axis.cross(normal);
+    btScalar x2n_angle = x_axis.angle(normal);
+    
+    if (x2n_angle == btScalar(0.0) || x2n_axis.length() == btScalar(0.0)) {
+        x2n_axis = x_axis;
+        x2n_angle = btScalar(0.0);
+    }
+    
+    btQuaternion x2n(x2n_axis, x2n_angle);
+    
     // world transform of pivot
-    btTransform pivot_trans_world = btTransform(x_rot2_n, body.getWorldTransform().getOrigin());
+    btTransform pivot_trans_world = btTransform(x2n, body.getWorldTransform().getOrigin());
     // b's local transform of pivot
     btTransform pivot_trans_b = body.getCenterOfMassTransform().inverse() * pivot_trans_world;
     btGeneric6DofSpring2Constraint* constraint = new btGeneric6DofSpring2Constraint(body, pivot_trans_b);
@@ -340,9 +358,18 @@ btTypedConstraint* SkirtExperiment::create_plane_fix_constraint(btRigidBody& bod
 btTypedConstraint* SkirtExperiment::create_spin_only_constraint(btRigidBody& body, const btVector3& normal) {
     // rotation between x-axis and plane normal
     btVector3 x_axis = btVector3(1.0, 0.0, 0.0);
-    btQuaternion x_rot2_n = btQuaternion(x_axis.cross(normal), x_axis.angle(normal));
+    btVector3 x2n_axis = x_axis.cross(normal);
+    btScalar x2n_angle = x_axis.angle(normal);
+    
+    if (x2n_angle == btScalar(0.0) || x2n_axis.length() == btScalar(0.0)) {
+        x2n_axis = x_axis;
+        x2n_angle = btScalar(0.0);
+    }
+    
+    btQuaternion x2n(x2n_axis, x2n_angle);
+    
     // world transform of pivot
-    btTransform pivot_trans_world = btTransform(x_rot2_n, body.getWorldTransform().getOrigin());
+    btTransform pivot_trans_world = btTransform(x2n, body.getWorldTransform().getOrigin());
     // b's local transform of pivot
     btTransform pivot_trans_b = body.getCenterOfMassTransform().inverse() * pivot_trans_world;
     btGeneric6DofSpring2Constraint* constraint = new btGeneric6DofSpring2Constraint(body, pivot_trans_b);

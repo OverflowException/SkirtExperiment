@@ -19,7 +19,7 @@ INCLUDE_DIRECTORIES(
     
 SET(SkirtExperiment_SRCS
     ./skirt_experiment.cpp
-    ./math_util.cpp
+    ./dynamic_bone.cpp
         ${BULLET_PHYSICS_SOURCE_DIR}/build3/bullet.rc
 	../StandaloneMain/main_opengl_single_example.cpp
         ../ExampleBrowser/OpenGLGuiHelper.cpp
@@ -66,6 +66,11 @@ ADD_EXECUTABLE(SkirtExperiment
                 ${SkirtExperiment_SRCS}
 )
 
+add_subdirectory(./glm EXCLUDE_FROM_ALL)
+
+target_link_libraries(SkirtExperiment
+  PRIVATE glm
+)
 
 IF (INTERNAL_ADD_POSTFIX_EXECUTABLE_NAMES)
                         SET_TARGET_PROPERTIES(SkirtExperiment PROPERTIES  DEBUG_POSTFIX "_Debug")
