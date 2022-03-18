@@ -38,17 +38,6 @@ void DynamicBone::append_particle(const Skeleton& skel,
     p.stiffness = configs.stiffness;
     p.inertia = configs.inertia;
     p.cur_pos = p.prev_pos = (*p.transform)[3];
-    
-//    // init rotation
-//    glm::vec3 t;
-//    glm::vec3 s;
-//    decompose_matrix(j.local_transform, t, p.local_rot, s);
-//
-//    glm::quat parent_rot(1.0f, 0.0f, 0.0f, 0.0f);
-//    if (parent_particle_id != -1) {
-//        parent_rot = _particles[parent_particle_id].world_rot;
-//    }
-//    p.world_rot = parent_rot * p.local_rot;
 
     for (size_t c : j.children) {
         append_particle(skel, c, _particles.size() - 1, configs);
