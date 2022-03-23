@@ -9,19 +9,32 @@
 
 #include "print_helper.h"
 
-void DynamicBone::init(const Configs& configs, const Skeleton& skel) {
+void ARDynamicBone::init(const Configs& configs, const Skeleton& skel) {
     append_particle(skel, configs.root_id, -1, configs);
     
     assert(_particles.size() >= 1);
     _object_transform = skel[configs.object_id].world_transform;
     _object_prev_pos = (*_object_transform)[3];
     _update_rate = configs.update_rate;
-    _gravity = configs.gravity;
-    _local_gravity = glm::inverse(*_particles[0].transform) * glm::vec4(_gravity, 0.0f);
-    _force = configs.force;
+    
+    _gravity_type = configs.gravity_type;
+    if (_gravity_type == GravityType::NONE) {
+        _gravity = glm::vec3(0.0f);
+        _local_gravity = glm::vec3(0.0f);
+        _force = glm::vec3(0.0f);
+    } else if (_gravity_type == GravityType::PSEUDO) {
+        _gravity = configs.gravity;
+        _local_gravity = glm::inverse(*_particles[0].transform) * glm::vec4(_gravity, 0.0f);
+        _force = configs.force;
+    } else if (_gravity_type == GravityType::DISTRIBUTED || _gravity_type == GravityType::DROOPY) {
+        _gravity = glm::normalize(configs.gravity);
+        _gravity_datum = *_particles[0].transform * glm::vec4(_gravity, 0.0);
+    } else {
+        assert(false);
+    }
 }
 
-void DynamicBone::append_particle(const Skeleton& skel, 
+void ARDynamicBone::append_particle(const Skeleton& skel,
                                   size_t skel_id, 
                                   size_t parent_particle_id,
                                   const Configs& configs) {
@@ -39,35 +52,78 @@ void DynamicBone::append_particle(const Skeleton& skel,
     p.inertia = configs.inertia;
     p.cur_pos = p.prev_pos = (*p.transform)[3];
 
+    // TODO: Breaks when a joint has multiple children
     for (size_t c : j.children) {
         append_particle(skel, c, _particles.size() - 1, configs);
     }
 }
 
-void DynamicBone::update(float dt) {
+void ARDynamicBone::update(float dt) {
     _object_move = glm::vec3((*_object_transform)[3]) - _object_prev_pos;
     _object_prev_pos = glm::vec3((*_object_transform)[3]);
 
     float steps = dt * _update_rate;
 
+    if (_gravity_type == GravityType::DISTRIBUTED || _gravity_type == GravityType::DROOPY) {
+        pre_apply_gravity();
+    }
     inertia_integration(steps);
     retain_geometry(steps);
 
     sync();
 }
 
-void DynamicBone::inertia_integration(float steps) {
+void ARDynamicBone::pre_apply_gravity() {
+    glm::mat4& root_trans = *_particles[0].transform;
+    glm::vec3 cur_gravity = root_trans * glm::vec4(_gravity, 0.0);
+    glm::quat rot = glm::rotation(cur_gravity, _gravity_datum);
+    
+    if (_gravity_type == GravityType::DROOPY) {
+        // apply extra rotation to the first joint only
+        apply_rotation(root_trans, rot);
+        
+        for (size_t i = 1; i < _particles.size(); ++i) {
+            Particle& p1 = _particles[i];
+            Particle& p0 = _particles[p1.parent_id];
+            *p1.transform = *p0.transform * p1.init_local_transform;
+        }
+        
+    } else if (_gravity_type == GravityType::DISTRIBUTED) {
+        // distribute extra rotation, apply to all joints
+        float angle = 0.0f;
+        glm::vec3 axis(0.0);
+        get_angle_and_axis(rot, angle, axis);
+        angle = angle / _particles.size();
+        float c = cos(angle / 2);
+        float s = sin(angle / 2);
+        rot = glm::quat(c, axis.x * s, axis.y * s, axis.z * s);
+        
+        apply_rotation(root_trans, rot);
+        
+        for (size_t i = 1; i < _particles.size(); ++i) {
+            Particle& p1 = _particles[i];
+            Particle& p0 = _particles[p1.parent_id];
+            *p1.transform = *p0.transform * p1.init_local_transform;
+            apply_rotation(*p1.transform, rot);
+        }
+    }
+}
+
+void ARDynamicBone::inertia_integration(float steps) {
     assert(_particles.size() > 0);
     std::shared_ptr<glm::mat4> root = _particles[0].transform;
     assert(root);
 
-    glm::vec3 residual_gravity = glm::vec3(0.0f);
-    if (_gravity != glm::vec3(0.0f)) {
-        glm::vec3 cur_gravity = *root * glm::vec4(_local_gravity, 0.0);
-        float proj_gravity = std::max(glm::dot(cur_gravity, _gravity), 0.0f) / glm::length(_gravity);
-        residual_gravity = _gravity - proj_gravity;
+    glm::vec3 force = glm::vec3(0.0);
+    if (_gravity_type == GravityType::PSEUDO) {
+        glm::vec3 residual_gravity = glm::vec3(0.0f);
+        if (_gravity != glm::vec3(0.0f)) {
+            glm::vec3 cur_gravity = *root * glm::vec4(_local_gravity, 0.0);
+            float proj_gravity = std::max(glm::dot(cur_gravity, _gravity), 0.0f) / glm::length(_gravity);
+            residual_gravity = _gravity - proj_gravity;
+        }
+        force = (residual_gravity + _force) * steps;
     }
-    glm::vec3 force = (residual_gravity + _force) * steps;
 
     // root particle's position gets updated directly, no integration
     _particles[0].prev_pos = _particles[0].cur_pos;
@@ -84,7 +140,7 @@ void DynamicBone::inertia_integration(float steps) {
     }
 }   
 
-void DynamicBone::retain_geometry(float steps) {
+void ARDynamicBone::retain_geometry(float steps) {
     for (size_t i = 1; i < _particles.size(); ++i) {
         Particle& p1 = _particles[i];
         Particle& p0 = _particles[p1.parent_id];
@@ -120,7 +176,7 @@ void DynamicBone::retain_geometry(float steps) {
 }
 
 // TODO: child_count > 1?
-void DynamicBone::sync() {
+void ARDynamicBone::sync() {
     for (size_t i = 1; i < _particles.size(); ++i) {
         Particle& p1 = _particles[i];
         Particle& p0 = _particles[p1.parent_id];
@@ -131,21 +187,44 @@ void DynamicBone::sync() {
             glm::quat rot = glm::rotation(prev_bone, cur_bone);
 
             // apply rot
-            *p0.transform = apply_rotation(*p0.transform, rot);
+            apply_rotation(*p0.transform, rot);
         }
 
         (*p1.transform)[3] = glm::vec4(p1.cur_pos, 1.0);
     }
 }
 
-glm::mat4 DynamicBone::apply_rotation(const glm::mat4& m, const glm::quat& q) {
+void ARDynamicBone::apply_rotation(glm::mat4& m, const glm::quat& q) {
     glm::vec3 t;
     glm::quat r;
     glm::vec3 s;
     decompose_matrix(m, t, r, s);
     
     r = q * r;
-    return glm::translate(glm::mat4(1.0), t) *
-           glm::mat4_cast(r) *
-           glm::scale(glm::mat4(1.0), s);
+    m = glm::translate(glm::mat4(1.0), t) *
+        glm::mat4_cast(r) *
+        glm::scale(glm::mat4(1.0), s);
+}
+
+void ARDynamicBone::get_angle_and_axis(const glm::quat& q, float& a, glm::vec3& axis) {
+    float angle = 2 * acos(q.w);
+    float sin_half_squared = 1 - q.w * q.w;
+    
+    float x, y, z;
+    // angle = 0 or 2PI
+    if (sin_half_squared <= 0.0f) {
+        x = 1.0f;
+        y = 0.0f;
+        z = 0.0f;
+    } else {
+        float sin_half = sqrt(sin_half_squared);
+        x = q.x / sin_half;
+        y = q.y / sin_half;
+        z = q.z / sin_half;
+    }
+    
+    a = angle;
+    axis.x = x;
+    axis.y = y;
+    axis.z = z;
 }

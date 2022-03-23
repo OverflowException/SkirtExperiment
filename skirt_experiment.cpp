@@ -17,7 +17,7 @@
 #include "dynamic_bone.h"
 
 const std::string base_filename = "./data/hip";
-const float       base_radius = 0.3;
+const float       base_radius = 1.0;
 
 const  int                     strand_count = 6;
 const std::string              strand_prefix = "./data/skirt";
@@ -61,12 +61,12 @@ struct SkirtExperiment : public CommonRigidBodyBase
     btRigidBody*  m_pitch_handle;
     btRigidBody*  m_roll_handle;
     
-    Skeleton skel;
+    ARDynamicBone::Skeleton skel;
     std::map<size_t, btRigidBody*> j2rb_map;
     std::map<std::pair<btRigidBody*, btRigidBody*>, btRigidBody*> s2c_map;
     
     Timer timer;
-    DynamicBone db;
+    ARDynamicBone db;
     
 	SkirtExperiment(struct GUIHelperInterface* helper) : CommonRigidBodyBase(helper) {}
     
@@ -125,7 +125,7 @@ void kinematicPreTickCallback(btDynamicsWorld* world, btScalar delta_time) {
     
     // simulate animation update
     for (size_t i = 1; i < exp->skel.size(); ++i) {
-        Joint& j = exp->skel[i];
+        ARDynamicBone::Joint& j = exp->skel[i];
         
         glm::mat4 parent_transfom = *exp->skel[j.parent].world_transform;
         *j.world_transform = glm::mat4(parent_transfom * j.local_transform);
@@ -234,7 +234,7 @@ void SkirtExperiment::create_dynamic_bones() {
     // Create skeleton hierarchy
     skel.resize(local_transforms.size());
     for (size_t i = 0; i < skel.size(); ++i) {
-        Joint& j = skel[i];
+        ARDynamicBone::Joint& j = skel[i];
         j.parent = i - 1;
         if (i != skel.size() - 1) {
             // Not the last
@@ -265,12 +265,14 @@ void SkirtExperiment::create_dynamic_bones() {
     m_base_trans = m_base->getWorldTransform();
     
     // init dynamic bones
-    DynamicBone::Configs db_cfg;
+    ARDynamicBone::Configs db_cfg;
     db_cfg.object_id = 0;
     db_cfg.root_id = root_id;
     db_cfg.update_rate = 60.0f;
     db_cfg.inertia = 0.1f;
     db_cfg.elasticity = 0.1f;
+    db_cfg.gravity_type = ARDynamicBone::GravityType::DISTRIBUTED;
+    db_cfg.gravity = glm::vec3(0.0, -1.0, 0.0);
     db.init(db_cfg, skel);
     
     timer.start();
