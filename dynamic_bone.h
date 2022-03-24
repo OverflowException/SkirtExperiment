@@ -5,6 +5,8 @@
 
 #include "glm/glm.hpp"
 
+#include "dynamic_bone_collider.h"
+
 class ARDynamicBone {
 public:
     struct Joint {
@@ -34,9 +36,13 @@ public:
         // TODO: add parameter distribution function
         // constant parameter at this point
         float               damping         = 0.1f;
+        float               friction        = 0.1f;
+        float               radius          = 0.1f;
         float               elasticity      = 0.1f;
         float               stiffness       = 0.1f;
         float               inertia         = 0.1f;
+        
+        std::vector<ARDynamicBoneCollider::Configs> colliders;
     };
 
     void init(const Configs& configs, const Skeleton& skel);
@@ -62,9 +68,12 @@ private:
         int         parent_id   = -1; // id of _particles
         size_t      child_count = 0;
         float       damping     = 0.0f;
+        float       friction    = 0.0f;
+        float       radius      = 0.0f;
         float       elasticity  = 0.0f;
         float       stiffness   = 0.0f;
         float       inertia     = 0.0f;
+        bool        collided    = false;
 
         // data for solver
         glm::vec3 cur_pos;
@@ -94,4 +103,7 @@ private:
     glm::vec3   _gravity_datum  = glm::vec3(0.0f);
     glm::vec3   _local_gravity  = glm::vec3(0.0f);
     glm::vec3   _force          = glm::vec3(0.0f);
+    
+    // colliders
+    std::vector<ARDynamicBoneCollider>  _colliders;
 };

@@ -17,7 +17,11 @@
 #include "dynamic_bone.h"
 
 const std::string base_filename = "./data/hip";
-const float       base_radius = 1.0;
+const float       base_radius = 0.1;
+
+const float       collider_radius = 0.75f;
+const float       collider_height = 0.1f;
+const glm::vec3   collider_center = glm::vec3(-1.2, -0.8, 0.0);
 
 const  int                     strand_count = 6;
 const std::string              strand_prefix = "./data/skirt";
@@ -61,9 +65,12 @@ struct SkirtExperiment : public CommonRigidBodyBase
     btRigidBody*  m_pitch_handle;
     btRigidBody*  m_roll_handle;
     
+    btRigidBody*  m_collider;
+    
     ARDynamicBone::Skeleton skel;
     std::map<size_t, btRigidBody*> j2rb_map;
     std::map<std::pair<btRigidBody*, btRigidBody*>, btRigidBody*> s2c_map;
+    std::vector<std::shared_ptr<glm::vec3>> c_handlers;
     
     Timer timer;
     ARDynamicBone db;
@@ -91,6 +98,8 @@ struct SkirtExperiment : public CommonRigidBodyBase
     void create_cylinder_between_spheres();
     
     void update_cylinder_between_spheres();
+    
+    void update_collider();
     
     btPoint2PointConstraint* create_p2p_constraint(btRigidBody& rb_a,
                                                    btRigidBody& rb_b,
@@ -144,6 +153,9 @@ void kinematicPreTickCallback(btDynamicsWorld* world, btScalar delta_time) {
     // sync bone cylinder
     exp->update_cylinder_between_spheres();
     
+    // sync collider
+    exp->update_collider();
+    
     // sync to skeleton
 ////    btTransform trans;
 ////    btVector3 linear_vel(0, 0, 0);
@@ -179,6 +191,16 @@ void SkirtExperiment::update_cylinder_between_spheres() {
         btVector3 bone_pos = (s0->getWorldTransform().getOrigin() + s1->getWorldTransform().getOrigin()) * 0.5;
         
         b->setWorldTransform(btTransform(bone_rot, bone_pos));
+    }
+}
+
+void SkirtExperiment::update_collider() {
+    if (c_handlers.size() == 1) {
+        // Collider is a sphere
+        m_collider->getWorldTransform().setOrigin(glm2bt_vec3(*c_handlers[0]));
+    } else {
+        // TODO: test capsule later
+        assert(false);
     }
 }
 
@@ -264,17 +286,48 @@ void SkirtExperiment::create_dynamic_bones() {
     m_base = j2rb_map[0];
     m_base_trans = m_base->getWorldTransform();
     
+//    // Create collision box
+//    btCapsuleShapeZ* cap_shape = new btCapsuleShapeZ(capsule_radius, capsule_height);
+//    m_collisionShapes.push_back(cap_shape);
+//    btRigidBody*
+    
     // init dynamic bones
     ARDynamicBone::Configs db_cfg;
     db_cfg.object_id = 0;
     db_cfg.root_id = root_id;
     db_cfg.update_rate = 60.0f;
     db_cfg.inertia = 0.1f;
-    db_cfg.elasticity = 0.1f;
+    db_cfg.elasticity = 0.03f;
     db_cfg.gravity_type = ARDynamicBone::GravityType::DISTRIBUTED;
     db_cfg.gravity = glm::vec3(0.0, -1.0, 0.0);
-    db.init(db_cfg, skel);
     
+    db_cfg.colliders.emplace_back();
+    auto& c_cfg = db_cfg.colliders.back();
+    c_cfg.ori = ARDynamicBoneCollider::Orientation::Y,
+    c_cfg.center = collider_center,
+    c_cfg.radius = collider_radius,
+    c_cfg.height = collider_height;
+    c_cfg.anchor = skel[0].world_transform;
+    
+    // create collision box debug handlers, and rigid bodies
+    if (c_cfg.height == 0.0f) {
+        c_handlers.resize(1);
+        c_handlers[0].reset(new glm::vec3(0.0f));
+        btSphereShape* c_sphere = new btSphereShape(collider_radius);
+        m_collisionShapes.push_back(c_sphere);
+        // Will cause a visible 'jump' of the initial position of collider
+        m_collider = createRigidBody(0.0f, btTransform(btQuaternion(0.0, 0.0, 0.0, 1.0)), c_sphere);
+    } else {
+        // cannot test capsule for now
+        assert(false);
+//        c_handlers.resize(2);
+//        c_handlers[0].reset(new glm::vec3(0.0f));
+//        c_handlers[1].reset(new glm::vec3(0.0f));
+    }
+    
+    c_cfg.handlers = c_handlers;
+    
+    db.init(db_cfg, skel);
     timer.start();
     
     create_position_handle();

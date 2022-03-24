@@ -17,6 +17,7 @@ void ARDynamicBone::init(const Configs& configs, const Skeleton& skel) {
     _object_prev_pos = (*_object_transform)[3];
     _update_rate = configs.update_rate;
     
+    // Initialize gravity
     _gravity_type = configs.gravity_type;
     if (_gravity_type == GravityType::NONE) {
         _gravity = glm::vec3(0.0f);
@@ -31,6 +32,11 @@ void ARDynamicBone::init(const Configs& configs, const Skeleton& skel) {
         _gravity_datum = *_particles[0].transform * glm::vec4(_gravity, 0.0);
     } else {
         assert(false);
+    }
+    
+    // Initialize colliders
+    for (auto c : configs.colliders) {
+        _colliders.emplace_back(c);
     }
 }
 
@@ -47,6 +53,7 @@ void ARDynamicBone::append_particle(const Skeleton& skel,
     p.parent_id = parent_particle_id;
     p.child_count = j.children.size();
     p.damping = configs.damping;
+    p.friction = configs.friction;
     p.elasticity = configs.elasticity;
     p.stiffness = configs.stiffness;
     p.inertia = configs.inertia;
@@ -135,8 +142,16 @@ void ARDynamicBone::inertia_integration(float steps) {
         glm::vec3 v = p.cur_pos - p.prev_pos;
         glm::vec3 o_move = _object_move * p.inertia;
         p.prev_pos = p.cur_pos + o_move;
-        // TODO: add collision friction to damping factor
-        p.cur_pos += v * (1 - p.damping) + force + o_move;
+        
+        // Collision resolution
+        float total_damping = p.damping;
+        if (p.collided) {
+            total_damping += p.friction;
+            p.collided = false;
+        }
+        total_damping = glm::clamp(total_damping, 0.0f, 1.0f);
+        
+        p.cur_pos += v * (1 - total_damping) + force + o_move;
     }
 }   
 
@@ -166,6 +181,13 @@ void ARDynamicBone::retain_geometry(float steps) {
         float len_threshold = rest_len * (1 - p1.stiffness) * 2;
         if (bias_len > len_threshold) {
             p1.cur_pos += bias * ((bias_len - len_threshold) / bias_len);
+        }
+        
+        // Collision detection
+        for (auto& c : _colliders) {
+            for (auto& p : _particles) {
+                p.collided = c.collide(p.cur_pos, p.radius);
+            }
         }
 
         // retain bone length
