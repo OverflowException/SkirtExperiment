@@ -30,7 +30,11 @@ bool ARDynamicBoneCollider::collide(glm::vec3& c, float r) {
         
         return sphere_check_and_push_out(c, r, cc, _radius);
     } else {
-        float h = _height * 0.5 - _radius;
+        // TODO: Unity DynamicBone is sets h value as
+        // h = _height * 0.5 - radius;
+        // It's inconsistent with _height = 0.0, so I modified it to
+        // h = _height * 0.5
+        float h = _height * 0.5;
         glm::vec3 cc0(_center);
         glm::vec3 cc1(_center);
         switch (_ori) {

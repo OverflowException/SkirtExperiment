@@ -20,8 +20,8 @@ const std::string base_filename = "./data/hip";
 const float       base_radius = 0.1;
 
 const float       collider_radius = 0.75f;
-const float       collider_height = 0.0f;
-const glm::vec3   collider_center = glm::vec3(-1.2, -0.8, 0.0);
+const float       collider_height = 1.7f;
+const glm::vec3   collider_center = glm::vec3(-1.5, -0.8, 0.0);
 
 const  int                     strand_count = 6;
 const std::string              strand_prefix = "./data/skirt";
@@ -198,8 +198,17 @@ void SkirtExperiment::update_collider() {
     if (c_handlers.size() == 1) {
         // Collider is a sphere
         m_collider->getWorldTransform().setOrigin(glm2bt_vec3(*c_handlers[0]));
+    } else if (c_handlers.size() == 2) {
+        // Collider is a capsule
+        glm::vec3 c0 = *c_handlers[0];
+        glm::vec3 c1 = *c_handlers[1];
+        glm::vec3 m = (c0 + c1) * 0.5f;
+        
+        btQuaternion cap_rot = bt_rot_between(btVector3(1.0f, 0.0f, 0.0f), glm2bt_vec3(c1 - c0));
+        // m_collider->getWorldTransform().setOrigin(glm2bt_vec3(m));
+        // m_collider->getWorldTransform().setBasis(btMatrix3x3(cap_rot));
+        m_collider->setWorldTransform(btTransform(cap_rot, glm2bt_vec3(m)));
     } else {
-        // TODO: test capsule later
         assert(false);
     }
 }
@@ -303,7 +312,7 @@ void SkirtExperiment::create_dynamic_bones() {
     
     db_cfg.colliders.emplace_back();
     auto& c_cfg = db_cfg.colliders.back();
-    c_cfg.ori = ARDynamicBoneCollider::Orientation::Y,
+    c_cfg.ori = ARDynamicBoneCollider::Orientation::X,
     c_cfg.center = collider_center,
     c_cfg.radius = collider_radius,
     c_cfg.height = collider_height;
@@ -313,16 +322,20 @@ void SkirtExperiment::create_dynamic_bones() {
     if (c_cfg.height == 0.0f) {
         c_handlers.resize(1);
         c_handlers[0].reset(new glm::vec3(0.0f));
+        
         btSphereShape* c_sphere = new btSphereShape(collider_radius);
         m_collisionShapes.push_back(c_sphere);
         // Will cause a visible 'jump' of the initial position of collider
         m_collider = createRigidBody(0.0f, btTransform(btQuaternion(0.0, 0.0, 0.0, 1.0)), c_sphere);
     } else {
-        // cannot test capsule for now
-        assert(false);
-//        c_handlers.resize(2);
-//        c_handlers[0].reset(new glm::vec3(0.0f));
-//        c_handlers[1].reset(new glm::vec3(0.0f));
+        c_handlers.resize(2);
+        c_handlers[0].reset(new glm::vec3(0.0f));
+        c_handlers[1].reset(new glm::vec3(0.0f));
+        
+        btCapsuleShape* c_capsule = new btCapsuleShapeX(collider_radius, collider_height);
+        m_collisionShapes.push_back(c_capsule);
+        // Will cause a visible 'jump' of the initial position of collider
+        m_collider = createRigidBody(0.0f, btTransform(btQuaternion(0.0, 0.0, 0.0, 1.0)), c_capsule);
     }
     
     c_cfg.handlers = c_handlers;
