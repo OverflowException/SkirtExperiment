@@ -20,7 +20,7 @@ const std::string base_filename = "./data/hip";
 const float       base_radius = 0.1;
 
 const float       collider_radius = 0.75f;
-const float       collider_height = 0.1f;
+const float       collider_height = 0.0f;
 const glm::vec3   collider_center = glm::vec3(-1.2, -0.8, 0.0);
 
 const  int                     strand_count = 6;
