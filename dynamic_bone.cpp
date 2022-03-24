@@ -33,11 +33,10 @@ void ARDynamicBone::init(const Configs& configs, const Skeleton& skel) {
     } else {
         assert(false);
     }
-    
-    // Initialize colliders
-    for (auto c : configs.colliders) {
-        _colliders.emplace_back(c);
-    }
+}
+
+void ARDynamicBone::add_collider(std::shared_ptr<ARDynamicBoneCollider> collider) {
+    _colliders.push_back(collider);
 }
 
 void ARDynamicBone::append_particle(const Skeleton& skel,
@@ -186,7 +185,7 @@ void ARDynamicBone::retain_geometry(float steps) {
         // Collision detection
         for (auto& c : _colliders) {
             for (auto& p : _particles) {
-                p.collided = c.collide(p.cur_pos, p.radius);
+                p.collided = c->collide(p.cur_pos, p.radius);
             }
         }
 

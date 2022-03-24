@@ -23,7 +23,7 @@ const float       base_radius = 0.1;
 // for visual debug only
 std::vector<std::shared_ptr<glm::vec3>> empty_handlers;
 
-const std::vector<ARDynamicBoneCollider::Configs> colliders = {
+const std::vector<ARDynamicBoneCollider::Configs> collider_cfgs = {
     {
         .ori = ARDynamicBoneCollider::Orientation::X,
         .center = glm::vec3(-1.9, -0.5, 0.9),
@@ -341,35 +341,45 @@ void SkirtExperiment::create_dynamic_bones() {
     db_cfg.elasticity = 0.03f;
     db_cfg.gravity_type = ARDynamicBone::GravityType::DISTRIBUTED;
     db_cfg.gravity = glm::vec3(0.0, -1.0, 0.0);
+    db.init(db_cfg, skel);
     
-    // create collision box debug handlers, and rigid bodies
-    db_cfg.colliders = colliders;
-    c_handlers.resize(colliders.size());
-    for (int i = 0; i < colliders.size(); ++i) {
-        if (db_cfg.colliders[i].height == 0.0f) {
+    // init colliders's debug handlers
+    c_handlers.resize(collider_cfgs.size());
+    for (int i = 0; i < collider_cfgs.size(); ++i) {
+        auto c_cfg = collider_cfgs[i];
+        if (c_cfg.height == 0.0f) {
             c_handlers[i].resize(1);
             c_handlers[i][0].reset(new glm::vec3(0.0f));
             
-            btSphereShape* c_sphere = new btSphereShape(db_cfg.colliders[i].radius);
+            btSphereShape* c_sphere = new btSphereShape(c_cfg.radius);
             m_collisionShapes.push_back(c_sphere);
-            // Will cause a visible 'jump' of the initial position of collider
-            m_colliders.push_back(createRigidBody(0.0f, btTransform(btQuaternion(0.0, 0.0, 0.0, 1.0)), c_sphere));
         } else {
             c_handlers[i].resize(2);
             c_handlers[i][0].reset(new glm::vec3(0.0f));
             c_handlers[i][1].reset(new glm::vec3(0.0f));
             
-            btCapsuleShape* c_capsule = new btCapsuleShapeX(db_cfg.colliders[i].radius, db_cfg.colliders[i].height);
+            btCapsuleShape* c_capsule = new btCapsuleShapeX(c_cfg.radius, c_cfg.height);
             m_collisionShapes.push_back(c_capsule);
             // Will cause a visible 'jump' of the initial position of collider
             m_colliders.push_back(createRigidBody(0.0f, btTransform(btQuaternion(0.0, 0.0, 0.0, 1.0)), c_capsule));
         }
-        
-        db_cfg.colliders[i].anchor = skel[0].world_transform;
-        db_cfg.colliders[i].handlers = c_handlers[i];
     }
     
-    db.init(db_cfg, skel);
+    // init colliders
+    std::vector<std::shared_ptr<ARDynamicBoneCollider>> colliders(collider_cfgs.size());
+    for (int i = 0; i < collider_cfgs.size(); ++i) {
+        auto c_cfg = collider_cfgs[i];
+        c_cfg.anchor = skel[0].world_transform;
+        c_cfg.handlers = c_handlers[i];
+        
+        colliders[i].reset(new ARDynamicBoneCollider(c_cfg));
+    }
+    
+    // add to DynamicBone
+    for (int i = 0; i < collider_cfgs.size(); ++i) {
+        db.add_collider(colliders[i]);
+    }
+    
     timer.start();
     
     create_position_handle();

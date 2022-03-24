@@ -41,11 +41,11 @@ public:
         float               elasticity      = 0.1f;
         float               stiffness       = 0.1f;
         float               inertia         = 0.1f;
-        
-        std::vector<ARDynamicBoneCollider::Configs> colliders;
     };
 
     void init(const Configs& configs, const Skeleton& skel);
+    
+    void add_collider(std::shared_ptr<ARDynamicBoneCollider> collider);
 
     // output. dynamic bone -> skeleton
     void sync();
@@ -104,7 +104,5 @@ private:
     glm::vec3   _local_gravity  = glm::vec3(0.0f);
     glm::vec3   _force          = glm::vec3(0.0f);
     
-    // colliders
-    // Colliders should not be maintained by DynamicBone, since there might be multiple DynamicBone objects
-    std::vector<ARDynamicBoneCollider>  _colliders;
+    std::vector<std::shared_ptr<ARDynamicBoneCollider>>  _colliders;
 };
