@@ -105,5 +105,6 @@ private:
     glm::vec3   _force          = glm::vec3(0.0f);
     
     // colliders
+    // Colliders should not be maintained by DynamicBone, since there might be multiple DynamicBone objects
     std::vector<ARDynamicBoneCollider>  _colliders;
 };

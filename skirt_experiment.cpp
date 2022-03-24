@@ -19,9 +19,36 @@
 const std::string base_filename = "./data/hip";
 const float       base_radius = 0.1;
 
-const float       collider_radius = 0.75f;
-const float       collider_height = 1.7f;
-const glm::vec3   collider_center = glm::vec3(-1.5, -0.8, 0.0);
+
+// for visual debug only
+std::vector<std::shared_ptr<glm::vec3>> empty_handlers;
+
+const std::vector<ARDynamicBoneCollider::Configs> colliders = {
+    {
+        .ori = ARDynamicBoneCollider::Orientation::X,
+        .center = glm::vec3(-1.9, -0.5, 0.9),
+        .radius = 0.6f,
+        .height = 1.0f
+    },
+    {
+        .ori = ARDynamicBoneCollider::Orientation::X,
+        .center = glm::vec3(-1.9, -0.5, -0.9),
+        .radius = 0.6f,
+        .height = 1.0f
+    },
+    {
+        .ori = ARDynamicBoneCollider::Orientation::Y,
+        .center = glm::vec3(-1.5, -0.5, 0.0),
+        .radius = 0.4f,
+        .height = 1.7f
+    },
+    {
+        .ori = ARDynamicBoneCollider::Orientation::Y,
+        .center = glm::vec3(-1.5, -0.8, 0.0),
+        .radius = 0.75f,
+        .height = 0.0f
+    }
+};
 
 const  int                     strand_count = 6;
 const std::string              strand_prefix = "./data/skirt";
@@ -65,12 +92,13 @@ struct SkirtExperiment : public CommonRigidBodyBase
     btRigidBody*  m_pitch_handle;
     btRigidBody*  m_roll_handle;
     
-    btRigidBody*  m_collider;
+    std::vector<btRigidBody*>  m_colliders;
     
     ARDynamicBone::Skeleton skel;
     std::map<size_t, btRigidBody*> j2rb_map;
     std::map<std::pair<btRigidBody*, btRigidBody*>, btRigidBody*> s2c_map;
-    std::vector<std::shared_ptr<glm::vec3>> c_handlers;
+    
+    std::vector<std::vector<std::shared_ptr<glm::vec3>>> c_handlers;
     
     Timer timer;
     ARDynamicBone db;
@@ -99,7 +127,7 @@ struct SkirtExperiment : public CommonRigidBodyBase
     
     void update_cylinder_between_spheres();
     
-    void update_collider();
+    void update_colliders();
     
     btPoint2PointConstraint* create_p2p_constraint(btRigidBody& rb_a,
                                                    btRigidBody& rb_b,
@@ -154,7 +182,7 @@ void kinematicPreTickCallback(btDynamicsWorld* world, btScalar delta_time) {
     exp->update_cylinder_between_spheres();
     
     // sync collider
-    exp->update_collider();
+    exp->update_colliders();
     
     // sync to skeleton
 ////    btTransform trans;
@@ -194,22 +222,26 @@ void SkirtExperiment::update_cylinder_between_spheres() {
     }
 }
 
-void SkirtExperiment::update_collider() {
-    if (c_handlers.size() == 1) {
-        // Collider is a sphere
-        m_collider->getWorldTransform().setOrigin(glm2bt_vec3(*c_handlers[0]));
-    } else if (c_handlers.size() == 2) {
-        // Collider is a capsule
-        glm::vec3 c0 = *c_handlers[0];
-        glm::vec3 c1 = *c_handlers[1];
-        glm::vec3 m = (c0 + c1) * 0.5f;
-        
-        btQuaternion cap_rot = bt_rot_between(btVector3(1.0f, 0.0f, 0.0f), glm2bt_vec3(c1 - c0));
-        // m_collider->getWorldTransform().setOrigin(glm2bt_vec3(m));
-        // m_collider->getWorldTransform().setBasis(btMatrix3x3(cap_rot));
-        m_collider->setWorldTransform(btTransform(cap_rot, glm2bt_vec3(m)));
-    } else {
-        assert(false);
+void SkirtExperiment::update_colliders() {
+    for (int i = 0; i < m_colliders.size(); ++i) {
+        auto& h = c_handlers[i];
+        auto c = m_colliders[i];
+        if (h.size() == 1) {
+            // Collider is a sphere
+            c->getWorldTransform().setOrigin(glm2bt_vec3(*h[0]));
+        } else if (h.size() == 2) {
+            // Collider is a capsule
+            glm::vec3 c0 = *h[0];
+            glm::vec3 c1 = *h[1];
+            glm::vec3 m = (c0 + c1) * 0.5f;
+            
+            btQuaternion cap_rot = bt_rot_between(btVector3(1.0f, 0.0f, 0.0f), glm2bt_vec3(c1 - c0));
+            // m_collider->getWorldTransform().setOrigin(glm2bt_vec3(m));
+            // m_collider->getWorldTransform().setBasis(btMatrix3x3(cap_rot));
+            c->setWorldTransform(btTransform(cap_rot, glm2bt_vec3(m)));
+        } else {
+            assert(false);
+        }
     }
 }
 
@@ -310,35 +342,32 @@ void SkirtExperiment::create_dynamic_bones() {
     db_cfg.gravity_type = ARDynamicBone::GravityType::DISTRIBUTED;
     db_cfg.gravity = glm::vec3(0.0, -1.0, 0.0);
     
-    db_cfg.colliders.emplace_back();
-    auto& c_cfg = db_cfg.colliders.back();
-    c_cfg.ori = ARDynamicBoneCollider::Orientation::X,
-    c_cfg.center = collider_center,
-    c_cfg.radius = collider_radius,
-    c_cfg.height = collider_height;
-    c_cfg.anchor = skel[0].world_transform;
-    
     // create collision box debug handlers, and rigid bodies
-    if (c_cfg.height == 0.0f) {
-        c_handlers.resize(1);
-        c_handlers[0].reset(new glm::vec3(0.0f));
+    db_cfg.colliders = colliders;
+    c_handlers.resize(colliders.size());
+    for (int i = 0; i < colliders.size(); ++i) {
+        if (db_cfg.colliders[i].height == 0.0f) {
+            c_handlers[i].resize(1);
+            c_handlers[i][0].reset(new glm::vec3(0.0f));
+            
+            btSphereShape* c_sphere = new btSphereShape(db_cfg.colliders[i].radius);
+            m_collisionShapes.push_back(c_sphere);
+            // Will cause a visible 'jump' of the initial position of collider
+            m_colliders.push_back(createRigidBody(0.0f, btTransform(btQuaternion(0.0, 0.0, 0.0, 1.0)), c_sphere));
+        } else {
+            c_handlers[i].resize(2);
+            c_handlers[i][0].reset(new glm::vec3(0.0f));
+            c_handlers[i][1].reset(new glm::vec3(0.0f));
+            
+            btCapsuleShape* c_capsule = new btCapsuleShapeX(db_cfg.colliders[i].radius, db_cfg.colliders[i].height);
+            m_collisionShapes.push_back(c_capsule);
+            // Will cause a visible 'jump' of the initial position of collider
+            m_colliders.push_back(createRigidBody(0.0f, btTransform(btQuaternion(0.0, 0.0, 0.0, 1.0)), c_capsule));
+        }
         
-        btSphereShape* c_sphere = new btSphereShape(collider_radius);
-        m_collisionShapes.push_back(c_sphere);
-        // Will cause a visible 'jump' of the initial position of collider
-        m_collider = createRigidBody(0.0f, btTransform(btQuaternion(0.0, 0.0, 0.0, 1.0)), c_sphere);
-    } else {
-        c_handlers.resize(2);
-        c_handlers[0].reset(new glm::vec3(0.0f));
-        c_handlers[1].reset(new glm::vec3(0.0f));
-        
-        btCapsuleShape* c_capsule = new btCapsuleShapeX(collider_radius, collider_height);
-        m_collisionShapes.push_back(c_capsule);
-        // Will cause a visible 'jump' of the initial position of collider
-        m_collider = createRigidBody(0.0f, btTransform(btQuaternion(0.0, 0.0, 0.0, 1.0)), c_capsule);
+        db_cfg.colliders[i].anchor = skel[0].world_transform;
+        db_cfg.colliders[i].handlers = c_handlers[i];
     }
-    
-    c_cfg.handlers = c_handlers;
     
     db.init(db_cfg, skel);
     timer.start();
