@@ -29,7 +29,7 @@ void ARDynamicBone::init(const Configs& configs, const Skeleton& skel) {
         _force = configs.force;
     } else if (_gravity_type == GravityType::DISTRIBUTED || _gravity_type == GravityType::DROOPY) {
         _gravity = glm::normalize(configs.gravity);
-        _gravity_datum = *_particles[0].transform * glm::vec4(_gravity, 0.0);
+        _gravity_datum = inverse(*_particles[0].transform) * glm::vec4(_gravity, 0.0);
     } else {
         assert(false);
     }
@@ -81,8 +81,8 @@ void ARDynamicBone::update(float dt) {
 
 void ARDynamicBone::pre_apply_gravity() {
     glm::mat4& root_trans = *_particles[0].transform;
-    glm::vec3 cur_gravity = root_trans * glm::vec4(_gravity, 0.0);
-    glm::quat rot = glm::rotation(cur_gravity, _gravity_datum);
+    glm::vec3 cur_gravity = root_trans * glm::vec4(_gravity_datum, 0.0);
+    glm::quat rot = glm::rotation(cur_gravity, _gravity);
     
     if (_gravity_type == GravityType::DROOPY) {
         // apply extra rotation to the first joint only
